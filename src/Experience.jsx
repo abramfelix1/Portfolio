@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import {
   useMatcapTexture,
   Text3D,
@@ -14,6 +14,13 @@ const material = new THREE.MeshMatcapMaterial();
 
 export default function Experience() {
   const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 512);
+
+  const htmlRef = useRef();
+
+  useFrame((state, delta) => {
+    const time = (state.clock.elapsedTime % 1) + 0.5;
+    // htmlRef.current.opacity = time >= 1 ? 0 : 100;
+  });
 
   useEffect(() => {
     matcapTexture.encoding = THREE.sRGBEncoding;
@@ -34,7 +41,7 @@ export default function Experience() {
       >
         <Float
           floatIntensity={1}
-          floatingRange={[1, 1]}
+          floatingRange={[0.5, 0.5]}
           rotationIntensity={1.5}
           speed={1.5}
         >
@@ -57,19 +64,15 @@ export default function Experience() {
           </Center>
         </Float>
       </Stage>
-      <Html>
-        <div
-          style={{
-            position: "absolute",
-            width: "200px",
-            top: "400px",
-            right: "-155px",
-            color: "white",
-          }}
-          onClick={() => console.log("A")}
-        >
-          CLICK TO START
-        </div>
+      <Html
+        ref={htmlRef}
+        center
+        transform
+        position={[0, -2.5, 0]}
+        style={{ color: "white", fontSize: "5px" }}
+        className="blink"
+      >
+        <div onClick={() => console.log("AAAAAAAAAAAAA")}>CLICK TO START</div>
       </Html>
     </>
   );
