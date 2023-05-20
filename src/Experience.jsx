@@ -16,7 +16,7 @@ import * as THREE from "three";
 const material = new THREE.MeshMatcapMaterial();
 
 export default function Experience() {
-  const [matcapTexture] = useMatcapTexture("AF9A72_504718_74652B_E2C2A2", 512);
+  const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 512);
 
   useEffect(() => {
     matcapTexture.encoding = THREE.sRGBEncoding;
@@ -28,12 +28,12 @@ export default function Experience() {
 
   return (
     <>
-      <color args={["#765b4b"]} attach={"background"}></color>
+      <color args={["#ffdf00"]} attach={"background"}></color>
       <Stage
         shadows={{ type: "contact", opacity: 0.0, blur: 3 }}
         environment="sunset"
         preset="portrait"
-        intensity={2}
+        intensity={1}
       >
         <Float rotationIntensity={0.5} speed={1.5}>
           <Center top>
