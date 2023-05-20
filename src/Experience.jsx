@@ -2,11 +2,8 @@ import { useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   useMatcapTexture,
-  Text,
   Text3D,
   Html,
-  ContactShadows,
-  PresentationControls,
   Float,
   Center,
   Stage,
@@ -35,7 +32,12 @@ export default function Experience() {
         preset="portrait"
         intensity={1}
       >
-        <Float rotationIntensity={0.5} speed={1.5}>
+        <Float
+          floatIntensity={1}
+          floatingRange={[1, 1]}
+          rotationIntensity={1.5}
+          speed={1.5}
+        >
           <Center top>
             <Text3D
               material={material}
