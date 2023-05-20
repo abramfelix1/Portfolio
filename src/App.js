@@ -1,5 +1,14 @@
+import { Canvas } from "@react-three/fiber";
+import Experience from "./Experience.jsx";
+
 function App() {
-  return <h1>ABRAM</h1>;
+  return (
+    <>
+      <Canvas>
+        <Experience />
+      </Canvas>
+    </>
+  );
 }
 
 export default App;
