@@ -22,9 +22,10 @@ canvas {
 }
 
 .blink {
-  padding: 15px;
+  padding: 0px;
   text-align: center;
-  line-height: 50px;
+  line-height: 0px;
+  background-color: black;
   animation: blink 1s ease-out infinite;
 }
 
