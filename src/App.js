@@ -1,13 +1,16 @@
+import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import Experience from "./Experience.jsx";
+import Landing from "./Landing.jsx";
 
 const root = document.getElementById("root");
 
 function App() {
+  const [onLoad, setOnLoad] = useState(true);
+
   return (
     <>
       <Canvas eventPrefix="client" eventSource={root}>
-        <Experience />
+        {onLoad && <Landing />}
       </Canvas>
     </>
   );
