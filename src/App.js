@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Canvas eventPrefix="client" eventSource={root}>
-        {onLoad && <Landing />}
+        {onLoad && <Landing onLoad={onLoad} setOnLoad={setOnLoad} />}
       </Canvas>
     </>
   );

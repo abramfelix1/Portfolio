@@ -16,16 +16,17 @@ import {
   Vignette,
   Noise,
   Pixelation,
+  Texture,
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 
 const material = new THREE.MeshMatcapMaterial();
 
-export default function Landing({ onLoad }) {
+export default function Landing({ onLoad, setOnLoad }) {
   const { viewport } = useThree();
   // const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 1024);
-  const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 1024);
-  // const [matcapTexture] = useMatcapTexture("8B892C_D4E856_475E2D_47360A", 1024);
+  // const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 1024);
+  const [matcapTexture] = useMatcapTexture("8B892C_D4E856_475E2D_47360A", 1024);
   // const [matcapTexture] = useMatcapTexture("B62D33_E4868B_7E2D34_DD6469", 1024);
   // const [matcapTexture] = useMatcapTexture("2A4BA7_1B2D44_1F3768_233C81", 1024);
   const texture = useTexture("./pictures/yellow.jpg");
@@ -33,13 +34,45 @@ export default function Landing({ onLoad }) {
 
   const [isRotated, setIsRotated] = useState(false);
   const [isFlippedDown, setIsFlippedDown] = useState(false);
+  const [vFlipped, setVFlipped] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
+  const [rename, setRename] = useState(false);
+  const [duration, setDuration] = useState(250);
+  const [name, setName] = useState({
+    first: "V",
+    last: "BRAM",
+  });
+
+  const fontSize = 1.2;
 
   const depthMaterial = useRef();
   const htmlRef = useRef();
-  const vRef = useRef();
+  const textRef = useRef();
+  const firstLetterRef = useRef();
 
   useFrame((state, delta) => {
     depthMaterial.current.uMouse = [state.mouse.x * 0.01, state.mouse.y * 0.01];
+
+    if (isStarted) {
+      if (textRef.current.scale.x > 0.1 && rename === false) {
+        textRef.current.position.x = 0.1;
+
+        textRef.current.scale.x -= 0.05;
+
+        if (textRef.current.scale.x < 0.1) {
+          setRename(true);
+        }
+      }
+
+      if (textRef.current.scale.x < 1 && rename === true) {
+        textRef.current.position.x = 0.75;
+        textRef.current.scale.x += 0.05;
+        if (textRef.current.scale.x === 1) {
+          setIsStarted(false);
+          setRename(false);
+        }
+      }
+    }
   });
 
   useEffect(() => {
@@ -52,7 +85,7 @@ export default function Landing({ onLoad }) {
   const rotationSpring = useSpring({
     from: { rotation: 0 },
     to: { rotation: isRotated ? Math.PI : 0 },
-    config: { duration: 500 },
+    config: { duration },
   });
 
   const positionSpring = useSpring({
@@ -64,10 +97,37 @@ export default function Landing({ onLoad }) {
       positionY: isFlippedDown ? -1.2 : 0,
       positionZ: isFlippedDown ? -0.2 : 0,
     },
-    config: { duration: 500 },
+    config: { duration },
   });
 
   const textClickHandler = () => {
+    setIsStarted(true);
+    if (name.first === "V") {
+      if (isRotated) {
+        setDuration(0);
+        setIsRotated(!isRotated);
+        setIsFlippedDown(!isRotated && !isFlippedDown);
+      }
+      setName({
+        first: "F",
+        last: "ELIX",
+      });
+    } else {
+      if (!vFlipped) {
+        setDuration(0);
+        setIsRotated(!isRotated);
+        setIsFlippedDown(!isRotated && !isFlippedDown);
+      }
+      setName({
+        first: "V",
+        last: "BRAM",
+      });
+    }
+  };
+
+  const vClickHandler = () => {
+    setVFlipped(!vFlipped);
+    setDuration(250);
     setIsRotated(!isRotated);
     setIsFlippedDown(!isRotated && !isFlippedDown);
   };
@@ -77,28 +137,27 @@ export default function Landing({ onLoad }) {
       <color args={["#ffdf00"]} attach={"background"} />
 
       <EffectComposer>
-        <Noise premultiply blendFunction={BlendFunction.SCREEN} />
+        <Noise
+          premultiply
+          blendFunction={BlendFunction.SOFT_LIGHT}
+          opacity={0.6}
+        />
         <Vignette
-          offset={0.3} // vignette offset
-          darkness={0.5} // vignette darkness
+          offset={0.3}
+          darkness={0.5}
           blendFunction={BlendFunction.DARKEN}
         />
-        {/* <Pixelation
-          granularity={3} // pixel granularity
-        /> */}
+        <Pixelation granularity={3} />
       </EffectComposer>
 
-      <mesh
-        position={[0, 0, -1]}
-        onClick={(e) => {
-          e.stopPropagation();
-          console.log("BACKGROUND CLICK");
-        }}
-      >
+      <mesh position={[0, 0, -1]}>
         <Plane
           args={[1, 1]}
           scale={[viewport.width + 5, viewport.height + 5, 1]}
           rotation-z={Math.PI * 2}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
         >
           <pseudo3DMaterial
             ref={depthMaterial}
@@ -108,71 +167,76 @@ export default function Landing({ onLoad }) {
         </Plane>
       </mesh>
 
-      <mesh position={[-2.5, -1, 0]} onClick={textClickHandler}>
+      <group
+        ref={textRef}
+        position={[0.5, -1, 0]}
+        onClick={(e) => {
+          e.stopPropagation();
+          textClickHandler();
+        }}
+      >
         <Float
           floatIntensity={1}
           floatingRange={[0.5, 0.5]}
           rotationIntensity={1.5}
           speed={1.25}
         >
-          <a.group ref={vRef} rotation-x={rotationSpring.rotation}>
+          <a.group rotation-x={rotationSpring.rotation}>
             <a.group
               position-y={positionSpring.positionY}
               position-z={positionSpring.positionZ}
             >
               <Text3D
+                ref={firstLetterRef}
                 material={material}
                 font="./fonts/Gemstone_Regular.json"
-                size={1.25}
+                size={fontSize}
                 height={0.2}
-                curveSegments={12}
+                curveSegments={2}
                 bevelEnabled
                 bevelThickness={0.3}
                 bevelSize={0.1}
                 bevelOffset={0.015}
                 bevelSegments={25}
                 letterSpacing={0.1}
+                position={[-2.8, 0, 0]}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (name.first === "V") vClickHandler();
+                }}
               >
-                V
+                {name.first}
               </Text3D>
             </a.group>
           </a.group>
           <Text3D
             material={material}
             font="./fonts/Gemstone_Regular.json"
-            size={1.25}
+            size={fontSize}
             height={0.2}
-            curveSegments={12}
+            curveSegments={2}
             bevelEnabled
             bevelThickness={0.3}
             bevelSize={0.1}
             bevelOffset={0.015}
             bevelSegments={25}
             letterSpacing={0.1}
-            position={[0.9, 0, 0]}
+            position={[-1.9, 0, 0]}
           >
-            BRAM
+            {name.last}
           </Text3D>
         </Float>
-      </mesh>
+      </group>
 
       <Html
         ref={htmlRef}
         center
         transform
         position={[0, -2.75, 0]}
-        style={{ color: "white", fontSize: "5px" }}
+        style={{ color: "white", fontSize: "5px", userSelect: "none" }}
         className="blink"
       >
-        <div
-          className="blink"
-          onClick={(e) => {
-            e.stopPropagation();
-            console.log("CLICK TO START CLICK");
-          }}
-        >
-          CLICK TO START
-        </div>
+        <div className="blink">CLICK TO START</div>
       </Html>
     </>
   );
