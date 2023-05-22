@@ -232,11 +232,21 @@ export default function Landing({ onLoad, setOnLoad }) {
         ref={htmlRef}
         center
         transform
-        position={[0, -2.75, 0]}
-        style={{ color: "white", fontSize: "5px", userSelect: "none" }}
+        position={[0, -2.5, 0]}
+        style={{ color: "white", fontSize: "6px", userSelect: "none" }}
         className="blink"
       >
-        <div className="blink">CLICK TO START</div>
+        CLICK TO START
+      </Html>
+
+      <Html
+        ref={htmlRef}
+        center
+        transform
+        position={[0, -3.5, 0]}
+        style={{ color: "white", fontSize: "5px", userSelect: "none" }}
+      >
+        © 2023 ABRAM FELIX PORTFOLIO
       </Html>
     </>
   );
