@@ -55,24 +55,24 @@ export default function Landing({ onLoad, setOnLoad }) {
 
     if (isStarted) {
       if (textRef.current.scale.x > 0.1 && rename === false) {
-        textRef.current.position.x = 0.1;
+        // textRef.current.position.x = 0.1;
 
         textRef.current.scale.x -= 0.05;
 
-        if (textRef.current.scale.x < 0.1) {
+        if (textRef.current.scale.x < 0.1 && rename === false) {
           setRename(true);
         }
       }
 
       if (textRef.current.scale.x < 1 && rename === true) {
-        textRef.current.position.x = 0.75;
         textRef.current.scale.x += 0.05;
-        if (textRef.current.scale.x === 1) {
+        if (textRef.current.scale.x === 1 && rename === true) {
           setIsStarted(false);
           setRename(false);
         }
       }
     }
+    console.log(rename);
   });
 
   useEffect(() => {
@@ -112,6 +112,7 @@ export default function Landing({ onLoad, setOnLoad }) {
         first: "F",
         last: "ELIX",
       });
+      textRef.current.position.set(0.9, -1.0, -0.2);
     } else {
       if (!vFlipped) {
         setDuration(0);
@@ -122,6 +123,7 @@ export default function Landing({ onLoad, setOnLoad }) {
         first: "V",
         last: "BRAM",
       });
+      textRef.current.position.set(0.55, -1.0, -0.2);
     }
   };
 
