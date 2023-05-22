@@ -72,7 +72,6 @@ export default function Landing({ onLoad, setOnLoad }) {
         }
       }
     }
-    console.log(rename);
   });
 
   useEffect(() => {
@@ -114,7 +113,7 @@ export default function Landing({ onLoad, setOnLoad }) {
       });
       textRef.current.position.set(0.9, -1.0, -0.2);
     } else {
-      if (!vFlipped) {
+      if (vFlipped) {
         setDuration(0);
         setIsRotated(!isRotated);
         setIsFlippedDown(!isRotated && !isFlippedDown);
