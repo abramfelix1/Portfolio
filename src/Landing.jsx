@@ -141,10 +141,10 @@ export default function Landing({ onLoad, setOnLoad }) {
         <Noise
           premultiply
           blendFunction={BlendFunction.SOFT_LIGHT}
-          opacity={0.6}
+          opacity={0.4}
         />
         <Vignette
-          offset={0.3}
+          // offset={0.3}
           darkness={0.5}
           blendFunction={BlendFunction.DARKEN}
         />
@@ -237,7 +237,7 @@ export default function Landing({ onLoad, setOnLoad }) {
         style={{ color: "white", fontSize: "6px", userSelect: "none" }}
         className="blink"
       >
-        CLICK TO START
+        <p onClick={(e) => console.log("A")}>CLICK TO START</p>
       </Html>
 
       <Html
