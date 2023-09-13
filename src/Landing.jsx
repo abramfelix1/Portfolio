@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFrame, useThree, extend } from "@react-three/fiber";
 import { useSpring, animated as a } from "@react-spring/three";
 import {
@@ -23,6 +24,12 @@ import { BlendFunction } from "postprocessing";
 const material = new THREE.MeshMatcapMaterial();
 
 export default function Landing({ onLoad, setOnLoad }) {
+  const navigate = useNavigate();
+
+  const handleStartClick = () => {
+    navigate("/home"); // replace with your loading screen route
+  };
+
   const { viewport } = useThree();
   // const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 1024);
   // const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 1024);
@@ -237,7 +244,7 @@ export default function Landing({ onLoad, setOnLoad }) {
         style={{ color: "white", fontSize: "6px", userSelect: "none" }}
         className="blink"
       >
-        <p onClick={(e) => console.log("A")}>CLICK TO START</p>
+        <p onClick={handleStartClick}>CLICK TO START</p>
       </Html>
 
       <Html
