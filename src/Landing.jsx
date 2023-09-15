@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFrame, useThree, extend } from "@react-three/fiber";
 import { useSpring, animated as a } from "@react-spring/three";
+import { animated } from "react-spring";
+
 import {
   Text3D,
   Html,
@@ -25,9 +27,21 @@ const material = new THREE.MeshMatcapMaterial();
 
 export default function Landing({ onLoad, setOnLoad }) {
   const navigate = useNavigate();
+  const [fade, setFade] = useState(false);
+
+  const fadeStyles = useSpring({
+    opacity: fade ? 1 : 0,
+    from: { opacity: 0 },
+    config: { duration: 400 },
+    onRest: () => {
+      if (fade) {
+        navigate("/home");
+      }
+    },
+  });
 
   const handleStartClick = () => {
-    navigate("/home"); // replace with your loading screen route
+    navigate("/home");
   };
 
   const { viewport } = useThree();
@@ -244,17 +258,21 @@ export default function Landing({ onLoad, setOnLoad }) {
         style={{ color: "white", fontSize: "6px", userSelect: "none" }}
         className="blink"
       >
-        <p onClick={handleStartClick}>CLICK TO START</p>
+        <p
+          onClick={() => {
+            handleStartClick();
+            // vClickHandler();
+          }}
+        >
+          CLICK TO START
+        </p>
       </Html>
 
-      <Html
-        ref={htmlRef}
-        center
-        transform
-        position={[0, -3.5, 0]}
-        style={{ color: "white", fontSize: "5px", userSelect: "none" }}
-      >
-        © 2023 ABRAM FELIX PORTFOLIO
+      <Html ref={htmlRef} center transform position={[0, -3.5, 0]}>
+        <p style={{ color: "white", fontSize: "5px", userSelect: "none" }}>
+          {" "}
+          © 2023 ABRAM FELIX PORTFOLIO
+        </p>
       </Html>
     </>
   );
