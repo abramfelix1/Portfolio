@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFrame, useThree, extend } from "@react-three/fiber";
 import { useSpring, animated as a } from "@react-spring/three";
-import { animated } from "react-spring";
 
 import {
   Text3D,
@@ -27,22 +26,6 @@ const material = new THREE.MeshMatcapMaterial();
 
 export default function Landing({ onLoad, setOnLoad }) {
   const navigate = useNavigate();
-  const [fade, setFade] = useState(false);
-
-  const fadeStyles = useSpring({
-    opacity: fade ? 1 : 0,
-    from: { opacity: 0 },
-    config: { duration: 400 },
-    onRest: () => {
-      if (fade) {
-        navigate("/home");
-      }
-    },
-  });
-
-  const handleStartClick = () => {
-    navigate("/home");
-  };
 
   const { viewport } = useThree();
   // const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 1024);
@@ -71,13 +54,17 @@ export default function Landing({ onLoad, setOnLoad }) {
   const textRef = useRef();
   const firstLetterRef = useRef();
 
-  useFrame((state, delta) => {
-    depthMaterial.current.uMouse = [state.mouse.x * 0.01, state.mouse.y * 0.01];
+  const frequency = 0.001;
+  const amplitude = 1;
+
+  useFrame(({ clock }) => {
+    const newY = amplitude * Math.sin(frequency * clock.elapsedTime);
+    const newX = clock.elapsedTime * 0.01;
+
+    depthMaterial.current.uMouse = [newX, newY];
 
     if (isStarted) {
       if (textRef.current.scale.x > 0.1 && rename === false) {
-        // textRef.current.position.x = 0.1;
-
         textRef.current.scale.x -= 0.05;
 
         if (textRef.current.scale.x < 0.1 && rename === false) {
@@ -249,31 +236,6 @@ export default function Landing({ onLoad, setOnLoad }) {
           </Text3D>
         </Float>
       </group>
-
-      <Html
-        ref={htmlRef}
-        center
-        transform
-        position={[0, -2.5, 0]}
-        style={{ color: "white", fontSize: "6px", userSelect: "none" }}
-        className="blink"
-      >
-        <p
-          onClick={() => {
-            handleStartClick();
-            // vClickHandler();
-          }}
-        >
-          CLICK TO START
-        </p>
-      </Html>
-
-      <Html ref={htmlRef} center transform position={[0, -3.5, 0]}>
-        <p style={{ color: "white", fontSize: "5px", userSelect: "none" }}>
-          {" "}
-          © 2023 ABRAM FELIX PORTFOLIO
-        </p>
-      </Html>
     </>
   );
 }

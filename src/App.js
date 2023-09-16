@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import Landing from "./Landing.jsx";
 import { Routes, Route } from "react-router-dom";
 import Menu from "./Menu.jsx";
+import Main from "./Main.jsx";
 
 const root = document.getElementById("root");
 
@@ -11,14 +12,7 @@ function App() {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <Canvas eventPrefix="client" eventSource={root}>
-            {onLoad && <Landing onLoad={onLoad} setOnLoad={setOnLoad} />}
-          </Canvas>
-        }
-      />
+      <Route path="/" element={<Main />} />
       <Route path="/home" element={<Menu />} />
     </Routes>
   );
