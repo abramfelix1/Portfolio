@@ -54,12 +54,25 @@ export default function Landing({ onLoad, setOnLoad }) {
   const textRef = useRef();
   const firstLetterRef = useRef();
 
-  const frequency = 0.001;
+  const frequency = 0.01;
   const amplitude = 1;
 
+  const minPeakY = -0.05;
+  const maxPeakY = 0.05;
+
+  const minPeakX = -0.3;
+  const maxPeakX = 0.3;
+
   useFrame(({ clock }) => {
-    const newY = amplitude * Math.sin(frequency * clock.elapsedTime);
-    const newX = clock.elapsedTime * 0.01;
+    const time = clock.getElapsedTime();
+    const newY =
+      (Math.sin(time * 0.1) * (maxPeakY - minPeakY) + (maxPeakY + minPeakY)) /
+      2;
+    const newX =
+      (Math.sin(time * 0.055) * (maxPeakX - minPeakX) + (maxPeakX + minPeakX)) /
+      2;
+
+    console.log(newX);
 
     depthMaterial.current.uMouse = [newX, newY];
 
