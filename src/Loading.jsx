@@ -11,9 +11,9 @@ export default function Loading() {
           <LoadingIcon />
         </Canvas>
       </div>
-      <div className="flex flex-col relative w-full h-full justify-end px-20 pb-20 text-white z-50">
+      <div className="flex flex-col relative w-full h-full justify-end px-20 pb-36 text-white z-50">
         <img
-          src={"./pictures/toilet4.png"}
+          src={"./pictures/toilet5.png"}
           alt="asdf"
           className="w-[100%] h-[100%] absolute scale-100 z-[-50] bottom-0"
         />
