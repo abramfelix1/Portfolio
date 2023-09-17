@@ -26,10 +26,10 @@ const material = new THREE.MeshMatcapMaterial();
 
 export default function Landing({ onLoad, setOnLoad }) {
   const { viewport } = useThree();
-  // const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 1024);
-  const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 1024);
-  // const [matcapTexture] = useMatcapTexture("8B892C_D4E856_475E2D_47360A", 1024);
-  // const [matcapTexture] = useMatcapTexture("E6BF3C_5A4719_977726_FCFC82", 1024);
+  //   const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 1024);
+  //   const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 1024);
+  const [matcapTexture] = useMatcapTexture("8B892C_D4E856_475E2D_47360A", 1024);
+  //   const [matcapTexture] = useMatcapTexture("E6BF3C_5A4719_977726_FCFC82", 1024);
   // const [matcapTexture] = useMatcapTexture("B62D33_E4868B_7E2D34_DD6469", 1024);
   // const [matcapTexture] = useMatcapTexture("2A4BA7_1B2D44_1F3768_233C81", 1024);
   //   const texture = useTexture("./pictures/yellow.jpg");
@@ -78,9 +78,6 @@ export default function Landing({ onLoad, setOnLoad }) {
   });
 
   const rotationSpring = useSpring({
-    start: {
-      rotation: Math.PI,
-    },
     from: { rotation: Math.PI },
     to: { rotation: isRotated ? Math.PI : 0 },
     config: { duration },
@@ -146,13 +143,12 @@ export default function Landing({ onLoad, setOnLoad }) {
 
       <group
         ref={textRef}
-        position={[0, 0, 0]}
+        position={[6.5, -3.65, 0]}
         onClick={(e) => {
           e.stopPropagation();
-          textClickHandler();
         }}
       >
-        <a.group rotation-x={rotationSpring.rotation}>
+        <a.group>
           <a.group
             position-y={positionSpring.positionY}
             position-z={positionSpring.positionZ}
@@ -165,12 +161,12 @@ export default function Landing({ onLoad, setOnLoad }) {
               height={0.02}
               curveSegments={2}
               bevelEnabled
-              bevelThickness={0.03}
-              bevelSize={0.01}
+              bevelThickness={0.003}
+              bevelSize={0.001}
               bevelOffset={0.0015}
               bevelSegments={25}
               letterSpacing={0.01}
-              position={[-0.13, 0, 0]}
+              position={[-0.14, 0, 0]}
               onClick={(e) => {
                 e.stopPropagation();
                 // if (name.first === "V") vClickHandler();
@@ -187,8 +183,8 @@ export default function Landing({ onLoad, setOnLoad }) {
           height={0.02}
           curveSegments={2}
           bevelEnabled
-          bevelThickness={0.03}
-          bevelSize={0.01}
+          bevelThickness={0.003}
+          bevelSize={0.001}
           bevelOffset={0.0015}
           bevelSegments={25}
           letterSpacing={0.01}

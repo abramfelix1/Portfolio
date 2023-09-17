@@ -4,8 +4,8 @@ import LoadingIcon from "./LoadingIcon";
 
 export default function Loading() {
   return (
-    <div className="w-full h-full bg-black">
-      <div className="w-full h-full">
+    <div className="flex w-full h-full relative bg-black">
+      <div className="w-full h-full absolute bottom-0">
         <Canvas alpha={true}>
           <LoadingIcon />
         </Canvas>
