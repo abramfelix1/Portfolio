@@ -54,22 +54,30 @@ export default function Landing({ onLoad, setOnLoad }) {
       volume: 0.1,
       loop: false,
       onplay: (id) => {
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
           ambienceSound.fade(0.1, 0, 2000, id);
           playNewInstance();
         }, 26000);
+
+        timeouts.push(timeoutId);
       },
     });
 
+    const playingInstances = [];
+    const timeouts = [];
+
     const playNewInstance = () => {
       const newInstanceId = ambienceSound.play();
-      ambienceSound.fade(0, 0.1, 2000, newInstanceId); // Fade in the new instance over 2 seconds
+      playingInstances.push(newInstanceId);
+      ambienceSound.fade(0, 0.1, 2000, newInstanceId);
     };
 
     playNewInstance();
 
     return () => {
-      ambienceSound.stop();
+      playingInstances.forEach((id) => ambienceSound.stop(id));
+
+      timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
     };
   }, []);
 
