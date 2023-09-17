@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFrame, useThree, extend } from "@react-three/fiber";
 import { useSpring, animated as a } from "@react-spring/three";
+import { Howl } from "howler";
 
 import {
   Text3D,
@@ -18,19 +19,17 @@ import {
   Vignette,
   Noise,
   Pixelation,
-  Texture,
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 
 const material = new THREE.MeshMatcapMaterial();
 
 export default function Landing({ onLoad, setOnLoad }) {
-  const navigate = useNavigate();
-
   const { viewport } = useThree();
   // const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 1024);
-  // const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 1024);
-  const [matcapTexture] = useMatcapTexture("8B892C_D4E856_475E2D_47360A", 1024);
+  const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 1024);
+  // const [matcapTexture] = useMatcapTexture("8B892C_D4E856_475E2D_47360A", 1024);
+  // const [matcapTexture] = useMatcapTexture("E6BF3C_5A4719_977726_FCFC82", 1024);
   // const [matcapTexture] = useMatcapTexture("B62D33_E4868B_7E2D34_DD6469", 1024);
   // const [matcapTexture] = useMatcapTexture("2A4BA7_1B2D44_1F3768_233C81", 1024);
   const texture = useTexture("./pictures/yellow.jpg");
@@ -48,6 +47,31 @@ export default function Landing({ onLoad, setOnLoad }) {
   });
 
   const fontSize = 1.2;
+
+  useEffect(() => {
+    const ambienceSound = new Howl({
+      src: ["./sounds/wind.wav"],
+      volume: 0.1,
+      loop: false,
+      onplay: (id) => {
+        setTimeout(() => {
+          ambienceSound.fade(0.1, 0, 2000, id);
+          playNewInstance();
+        }, 26000);
+      },
+    });
+
+    const playNewInstance = () => {
+      const newInstanceId = ambienceSound.play();
+      ambienceSound.fade(0, 0.1, 2000, newInstanceId); // Fade in the new instance over 2 seconds
+    };
+
+    playNewInstance();
+
+    return () => {
+      ambienceSound.stop();
+    };
+  }, []);
 
   const depthMaterial = useRef();
   const htmlRef = useRef();
@@ -165,7 +189,7 @@ export default function Landing({ onLoad, setOnLoad }) {
           opacity={0.4}
         />
         <Vignette
-          // offset={0.3}
+          offset={0.3}
           darkness={0.5}
           blendFunction={BlendFunction.DARKEN}
         />

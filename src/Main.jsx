@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Landing from "./Landing";
 import { Canvas } from "@react-three/fiber";
 import { motion, AnimatePresence } from "framer-motion";
+import { Howl } from "howler";
+import Loading from "./Loading";
 
 export default function Main() {
   const [showLanding, setShowLanding] = useState(true);
 
   const handleExit = () => {
-    setShowLanding(false);
+    startSound.play();
+    setTimeout(() => {
+      setShowLanding(false);
+    }, 250);
   };
+
+  const startSound = new Howl({
+    src: ["./sounds/start.mp3"],
+    volume: 0.1,
+    loop: false,
+  });
 
   return (
     <div className="flex relative w-screen h-screen bg-black">
@@ -35,7 +46,7 @@ export default function Main() {
             </Canvas>
           </motion.div>
         ) : (
-          <motion.p className="text-white z-50">Hi</motion.p>
+          <Loading />
         )}
       </AnimatePresence>
     </div>
