@@ -125,21 +125,36 @@ export default function Landing({ onLoad, setOnLoad }) {
     };
   }, []);
 
+  const texture = useTexture("./pictures/toilet3.png");
+
   return (
     <>
-      {/* <EffectComposer>
+      <EffectComposer>
         <Noise
           premultiply
           blendFunction={BlendFunction.SOFT_LIGHT}
           opacity={0.4}
         />
-        <Vignette
+        {/* <Vignette
           offset={0.3}
           darkness={0.5}
           blendFunction={BlendFunction.DARKEN}
-        />
-        <Pixelation granularity={3} />
-      </EffectComposer> */}
+        /> */}
+        {/* <Pixelation granularity={0.5} /> */}
+      </EffectComposer>
+
+      {/* <mesh position={[0, 0, -1]}>
+        <Plane
+          args={[1, 1]}
+          scale={[7, 7, 1]}
+          rotation-z={Math.PI * 2}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <pseudo3DMaterial uImage={texture} />
+        </Plane>
+      </mesh> */}
 
       <group
         ref={textRef}
