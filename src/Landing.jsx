@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFrame, useThree, extend } from "@react-three/fiber";
 import { useSpring, animated as a } from "@react-spring/three";
 import { Howl } from "howler";
+import { ViewContext } from "./context/ViewContext";
 
 import {
   Text3D,
@@ -22,7 +23,9 @@ import {
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 
-const material = new THREE.MeshMatcapMaterial();
+const material = new THREE.MeshMatcapMaterial({
+  transparent: true,
+});
 
 export default function Landing({ onLoad, setOnLoad }) {
   const { viewport } = useThree();
@@ -35,6 +38,7 @@ export default function Landing({ onLoad, setOnLoad }) {
   const texture = useTexture("./pictures/yellow.jpg");
   const depthMap = useTexture("./pictures/yellow-depth.png");
 
+  const { showLanding } = useContext(ViewContext);
   const [isRotated, setIsRotated] = useState(false);
   const [isFlippedDown, setIsFlippedDown] = useState(false);
   const [vFlipped, setVFlipped] = useState(false);
@@ -46,7 +50,7 @@ export default function Landing({ onLoad, setOnLoad }) {
     last: "BRAM",
   });
 
-  const fontSize = 1.2;
+  const fontSize = 0.9;
 
   useEffect(() => {
     const ambienceSound = new Howl({
@@ -84,6 +88,7 @@ export default function Landing({ onLoad, setOnLoad }) {
   const depthMaterial = useRef();
   const htmlRef = useRef();
   const textRef = useRef();
+  const materialRef = useRef();
   const firstLetterRef = useRef();
 
   const frequency = 0.01;
@@ -103,8 +108,6 @@ export default function Landing({ onLoad, setOnLoad }) {
     const newX =
       (Math.sin(time * 0.055) * (maxPeakX - minPeakX) + (maxPeakX + minPeakX)) /
       2;
-
-    console.log(newX);
 
     depthMaterial.current.uMouse = [newX, newY];
 
@@ -140,17 +143,53 @@ export default function Landing({ onLoad, setOnLoad }) {
     config: { duration },
   });
 
-  const positionSpring = useSpring({
+  const vPositionSpring = useSpring({
     from: {
       positionY: 0,
       positionZ: 0,
     },
     to: {
-      positionY: isFlippedDown ? -1.2 : 0,
+      positionY: isFlippedDown ? -0.9 : 0,
       positionZ: isFlippedDown ? -0.2 : 0,
     },
     config: { duration },
   });
+
+  const textPositionSpring = useSpring({
+    from: {
+      positionX: 0.8,
+      positionY: -0.7,
+      positionZ: 1,
+      rotation: 0,
+      opacity: 1,
+    },
+    to: {
+      positionX: 0.8,
+      positionY: showLanding ? -0.7 : -10,
+      positionZ: showLanding ? 1 : 1,
+      rotation: showLanding ? 0 : -Math.PI,
+      opacity: 0,
+    },
+    config: { duration: 275 },
+  });
+
+  const [spring, set] = useSpring(() => ({
+    scaleY: 1,
+    scaleX: 1,
+  }));
+
+  const animateFall = () => {
+    set({ scaleY: 3.5 });
+    setTimeout(() => {
+      material.opacity = 0.1;
+    }, 75);
+  };
+
+  useEffect(() => {
+    if (!showLanding) {
+      animateFall();
+    }
+  }, [showLanding]);
 
   const textClickHandler = () => {
     setIsStarted(true);
@@ -164,7 +203,7 @@ export default function Landing({ onLoad, setOnLoad }) {
         first: "F",
         last: "ELIX",
       });
-      textRef.current.position.set(0.9, -1.0, -0.2);
+      textRef.current.position.set(1.2, -0.7, 1);
     } else {
       if (vFlipped) {
         setDuration(0);
@@ -175,7 +214,7 @@ export default function Landing({ onLoad, setOnLoad }) {
         first: "V",
         last: "BRAM",
       });
-      textRef.current.position.set(0.55, -1.0, -0.2);
+      textRef.current.position.set(0.85, -0.7, 1);
     }
   };
 
@@ -201,7 +240,7 @@ export default function Landing({ onLoad, setOnLoad }) {
           darkness={0.5}
           blendFunction={BlendFunction.DARKEN}
         />
-        <Pixelation granularity={3} />
+        <Pixelation granularity={2} />
       </EffectComposer>
 
       <mesh position={[0, 0, -1]}>
@@ -221,9 +260,13 @@ export default function Landing({ onLoad, setOnLoad }) {
         </Plane>
       </mesh>
 
-      <group
+      <a.group
         ref={textRef}
-        position={[0.5, -1, 0]}
+        position-x={textPositionSpring.positionX}
+        position-y={textPositionSpring.positionY}
+        position-z={textPositionSpring.positionZ}
+        scale-x={spring.scaleX}
+        scale-y={spring.scaleY}
         onClick={(e) => {
           e.stopPropagation();
           textClickHandler();
@@ -237,8 +280,8 @@ export default function Landing({ onLoad, setOnLoad }) {
         >
           <a.group rotation-x={rotationSpring.rotation}>
             <a.group
-              position-y={positionSpring.positionY}
-              position-z={positionSpring.positionZ}
+              position-y={vPositionSpring.positionY}
+              position-z={vPositionSpring.positionZ}
             >
               <Text3D
                 ref={firstLetterRef}
@@ -253,7 +296,7 @@ export default function Landing({ onLoad, setOnLoad }) {
                 bevelOffset={0.015}
                 bevelSegments={25}
                 letterSpacing={0.1}
-                position={[-2.8, 0, 0]}
+                position={[-2.6, 0, 0]}
                 onClick={(e) => {
                   e.stopPropagation();
                   if (name.first === "V") vClickHandler();
@@ -280,7 +323,7 @@ export default function Landing({ onLoad, setOnLoad }) {
             {name.last}
           </Text3D>
         </Float>
-      </group>
+      </a.group>
     </>
   );
 }

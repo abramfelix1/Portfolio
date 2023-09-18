@@ -133,14 +133,14 @@ export default function Landing({ onLoad, setOnLoad }) {
         <Noise
           premultiply
           blendFunction={BlendFunction.SOFT_LIGHT}
-          opacity={0.4}
+          opacity={0.7}
         />
         {/* <Vignette
           offset={0.3}
           darkness={0.5}
           blendFunction={BlendFunction.DARKEN}
         /> */}
-        {/* <Pixelation granularity={0.5} /> */}
+        <Pixelation granularity={0} />
       </EffectComposer>
 
       {/* <mesh position={[0, 0, -1]}>

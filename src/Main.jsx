@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Landing from "./Landing";
 import { Canvas } from "@react-three/fiber";
 import { motion, AnimatePresence } from "framer-motion";
 import { Howl } from "howler";
 import Loading from "./Loading";
+import { ViewContext } from "./context/ViewContext";
 
 export default function Main() {
-  const [showLanding, setShowLanding] = useState(true);
+  // const [showLanding, setShowLanding] = useState(true);
+  const { showLanding, setShowLanding } = useContext(ViewContext);
 
   const handleExit = () => {
     startSound.play();
