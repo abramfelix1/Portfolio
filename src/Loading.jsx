@@ -1,25 +1,36 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useFrame, useThree, extend, Canvas } from "@react-three/fiber";
 import LoadingIcon from "./LoadingIcon";
 import { motion, AnimatePresence } from "framer-motion";
 import { ViewContext } from "./context/ViewContext";
 
 export default function Loading() {
-  const { showLoading, setShowLoading } = useContext(ViewContext);
+  const [showLoadingIcon, setShowLoadingIcon] = useState(true);
+  const { setShowMainMenu, setShowLoading } = useContext(ViewContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowLoading(false);
+      setShowLoadingIcon(false);
     }, 5000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [setShowLoading]);
+  }, [setShowLoadingIcon]);
+
+  const handleContinue = () => {
+    if (!showLoadingIcon) {
+      setShowLoading(false);
+      setShowMainMenu(true);
+    }
+  };
 
   return (
-    <div className="flex w-full h-full relative bg-black">
-      {showLoading ? (
+    <div
+      className="flex w-full h-full relative bg-black "
+      onClick={handleContinue}
+    >
+      {showLoadingIcon ? (
         <div className="w-full h-full absolute bottom-8">
           (
           <Canvas alpha={true}>
@@ -28,7 +39,7 @@ export default function Loading() {
           )
         </div>
       ) : (
-        <div className="absolute right-0 bottom-8 pr-8">
+        <div className="absolute right-0 bottom-8 pr-8 z-50">
           <p className="blink text-white">Click to continue</p>
         </div>
       )}
@@ -36,7 +47,7 @@ export default function Loading() {
         <img
           src={"./pictures/toilet5.png"}
           alt="asdf"
-          className="w-[100%] h-[100%] absolute scale-100 z-[-50] bottom-0"
+          className="w-[100%] h-[100%] absolute scale-100 z-[-50] bottom-0 select-none pointer-events-none"
         />
         <motion.div
           key="border"

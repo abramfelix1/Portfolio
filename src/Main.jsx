@@ -5,10 +5,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Howl } from "howler";
 import Loading from "./Loading";
 import { ViewContext } from "./context/ViewContext";
+import MainMenu from "./MainMenu";
 
 export default function Main() {
-  // const [showLanding, setShowLanding] = useState(true);
-  const { showLanding, setShowLanding } = useContext(ViewContext);
+  const {
+    showLanding,
+    setShowLanding,
+    showLoading,
+    setShowLoading,
+    showMainMenu,
+  } = useContext(ViewContext);
   const [showStart, setShowStart] = useState(true);
 
   const handleExit = () => {
@@ -16,6 +22,7 @@ export default function Main() {
     setShowStart(false);
     setTimeout(() => {
       setShowLanding(false);
+      setShowLoading(true);
     }, 250);
   };
 
@@ -28,7 +35,7 @@ export default function Main() {
   return (
     <div className="flex relative w-screen h-screen bg-black">
       <AnimatePresence>
-        {showLanding ? (
+        {showLanding && (
           <motion.div
             key="landing"
             initial={{ opacity: 0 }}
@@ -54,9 +61,9 @@ export default function Main() {
               <Landing />
             </Canvas>
           </motion.div>
-        ) : (
-          <Loading />
         )}
+        {showLoading && <Loading />}
+        {showMainMenu && <MainMenu />}
       </AnimatePresence>
     </div>
   );

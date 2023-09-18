@@ -4,7 +4,8 @@ export const ViewContext = createContext();
 
 export const ViewProvider = ({ children }) => {
   const [showLanding, setShowLanding] = useState(true);
-  const [showLoading, setShowLoading] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
+  const [showMainMenu, setShowMainMenu] = useState(false);
 
   return (
     <ViewContext.Provider
@@ -13,6 +14,8 @@ export const ViewProvider = ({ children }) => {
         setShowLanding,
         showLoading,
         setShowLoading,
+        showMainMenu,
+        setShowMainMenu,
       }}
     >
       {children}
