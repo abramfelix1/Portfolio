@@ -9,9 +9,11 @@ import { ViewContext } from "./context/ViewContext";
 export default function Main() {
   // const [showLanding, setShowLanding] = useState(true);
   const { showLanding, setShowLanding } = useContext(ViewContext);
+  const [showStart, setShowStart] = useState(true);
 
   const handleExit = () => {
     startSound.play();
+    setShowStart(false);
     setTimeout(() => {
       setShowLanding(false);
     }, 250);
@@ -36,9 +38,14 @@ export default function Main() {
             className="flex relative justify-center w-full h-full"
           >
             <div className="flex flex-grow flex-col items-center absolute bottom-0 gap-y-32 p-2 select-none">
-              <p className="blink text-white text-xs z-50" onClick={handleExit}>
-                CLICK TO START
-              </p>
+              {showStart && (
+                <p
+                  className="blink text-white text-xs z-50"
+                  onClick={handleExit}
+                >
+                  CLICK TO START
+                </p>
+              )}
               <p className="text-white text-xs z-50 select-none pointer-events-none">
                 © 2023 ABRAM FELIX PORTFOLIO
               </p>
