@@ -11,27 +11,27 @@ export default function Loading() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowLoadingIcon(false);
-    }, 5000);
+      setShowMainMenu(true);
+    }, 4000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [setShowLoadingIcon]);
+  }, [setShowLoadingIcon, setShowMainMenu]);
 
   const handleContinue = () => {
     if (!showLoadingIcon) {
       setShowLoading(false);
-      setShowMainMenu(true);
     }
   };
 
   return (
     <div
-      className="flex w-full h-full relative bg-black "
+      className="flex w-full h-full relative bg-black"
       onClick={handleContinue}
     >
       {showLoadingIcon ? (
-        <div className="w-full h-full absolute bottom-8">
+        <div className="w-full h-full absolute bottom-8 z-50">
           (
           <Canvas alpha={true}>
             <LoadingIcon />
@@ -39,15 +39,15 @@ export default function Loading() {
           )
         </div>
       ) : (
-        <div className="absolute right-0 bottom-8 pr-8 z-50">
-          <p className="blink text-white">Click to continue</p>
+        <div className="absolute right-0 bottom-8 pr-8 z-50 select-none">
+          <p className="blink text-white">Click Anywhere to continue</p>
         </div>
       )}
-      <div className="flex flex-col relative w-full h-full justify-end px-20 pb-36 text-white z-50">
+      <div className="flex flex-col relative w-full h-full justify-end px-20 pb-36 text-white z-40 bg-black select-none">
         <img
           src={"./pictures/toilet5.png"}
           alt="asdf"
-          className="w-[100%] h-[100%] absolute scale-100 z-[-50] bottom-0 select-none pointer-events-none"
+          className="w-[100%] h-[100%] absolute scale-100 z-[-50] bottom-0 select-none pointer-events-none "
         />
         <motion.div
           key="border"

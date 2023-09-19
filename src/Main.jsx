@@ -23,7 +23,7 @@ export default function Main() {
     setTimeout(() => {
       setShowLanding(false);
       setShowLoading(true);
-    }, 250);
+    }, 350);
   };
 
   const startSound = new Howl({
@@ -33,15 +33,14 @@ export default function Main() {
   });
 
   return (
-    <div className="flex relative w-screen h-screen bg-black">
+    <div className="flex relative w-screen h-screen">
       <AnimatePresence>
         {showLanding && (
           <motion.div
             key="landing"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.5 } }}
-            onAnimationComplete={() => console.log("Animation completed")}
             className="flex relative justify-center w-full h-full"
           >
             <div className="flex flex-grow flex-col items-center absolute bottom-0 gap-y-32 p-2 select-none">
@@ -62,9 +61,9 @@ export default function Main() {
             </Canvas>
           </motion.div>
         )}
-        {showLoading && <Loading />}
-        {showMainMenu && <MainMenu />}
       </AnimatePresence>
+      {showLoading && <Loading />}
+      {showMainMenu && <MainMenu />}
     </div>
   );
 }

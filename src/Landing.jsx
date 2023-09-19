@@ -165,12 +165,12 @@ export default function Landing({ onLoad, setOnLoad }) {
     },
     to: {
       positionX: 0.8,
-      positionY: showLanding ? -0.7 : -10,
+      positionY: showLanding ? -0.7 : -12,
       positionZ: showLanding ? 1 : 1,
       rotation: showLanding ? 0 : -Math.PI,
       opacity: 0,
     },
-    config: { duration: 275 },
+    config: { duration: 475 },
   });
 
   const [spring, set] = useSpring(() => ({
@@ -182,7 +182,7 @@ export default function Landing({ onLoad, setOnLoad }) {
     set({ scaleY: 3.5 });
     setTimeout(() => {
       material.opacity = 0.1;
-    }, 75);
+    }, 135);
   };
 
   useEffect(() => {

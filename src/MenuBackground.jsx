@@ -38,7 +38,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
   const texture = useTexture("./pictures/lake2.png");
   const depthMap = useTexture("./pictures/lake2-depth.png");
 
-  const { showLanding } = useContext(ViewContext);
+  // const { showLanding } = useContext(ViewContext);
   const [isRotated, setIsRotated] = useState(false);
   const [isFlippedDown, setIsFlippedDown] = useState(false);
   const [vFlipped, setVFlipped] = useState(false);
@@ -164,9 +164,9 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
     },
     to: {
       positionX: 0.8,
-      positionY: showLanding ? -0.7 : -10,
-      positionZ: showLanding ? 1 : 1,
-      rotation: showLanding ? 0 : -Math.PI,
+      positionY: -0.7,
+      positionZ: 1,
+      rotation: 0,
       opacity: 0,
     },
     config: { duration: 275 },
@@ -184,11 +184,11 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
     }, 75);
   };
 
-  useEffect(() => {
-    if (!showLanding) {
-      animateFall();
-    }
-  }, [showLanding]);
+  // useEffect(() => {
+  //   if (!showLanding) {
+  //     animateFall();
+  //   }
+  // }, [showLanding]);
 
   const textClickHandler = () => {
     setIsStarted(true);
