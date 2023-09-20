@@ -54,14 +54,14 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
 
   useEffect(() => {
     const ambienceSound = new Howl({
-      src: ["./sounds/wind.wav"],
-      volume: 0.1,
+      src: ["./sounds/allstar.mp3"],
+      volume: 0.05,
       loop: false,
       onplay: (id) => {
         const timeoutId = setTimeout(() => {
           ambienceSound.fade(0.1, 0, 2000, id);
           playNewInstance();
-        }, 26000);
+        }, 68000);
 
         timeouts.push(timeoutId);
       },
