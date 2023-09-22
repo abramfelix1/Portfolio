@@ -156,18 +156,22 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
 
   const textPositionSpring = useSpring({
     from: {
-      positionX: 0.8,
-      positionY: -0.7,
+      positionX: 2.0,
+      positionY: -1.2,
       positionZ: 1,
       rotation: 0,
       opacity: 1,
+      scaleY: 3.5,
+      scaleX: 3.5,
     },
     to: {
-      positionX: 0.8,
-      positionY: -0.7,
+      positionX: 2.0,
+      positionY: -1.2,
       positionZ: 1,
       rotation: 0,
       opacity: 0,
+      scaleY: 1,
+      scaleX: 1,
     },
     config: { duration: 275 },
   });
@@ -283,6 +287,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
               position-z={vPositionSpring.positionZ}
             >
               <Text3D
+                castShadow
                 ref={firstLetterRef}
                 material={material}
                 font="./fonts/Gemstone_Regular.json"
@@ -306,6 +311,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
             </a.group>
           </a.group>
           <Text3D
+            castShadow
             material={material}
             font="./fonts/Gemstone_Regular.json"
             size={fontSize}
@@ -323,6 +329,28 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
           </Text3D>
         </Float>
       </a.group>
+
+      <directionalLight
+        position={[2, 10, 5]}
+        intensity={0.5}
+        castShadow
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        shadow-camera-far={50}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
+      />
+
+      {/* <mesh
+        receiveShadow
+        position={[0, -fontSize / 2, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+      >
+        <planeBufferGeometry attach="geometry" args={[10, 10]} />
+        <meshStandardMaterial attach="material" color="gray" />
+      </mesh> */}
     </>
   );
 }
