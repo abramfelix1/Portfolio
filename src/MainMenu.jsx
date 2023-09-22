@@ -8,7 +8,7 @@ export default function MainMenu() {
     <div className="w-full h-full absolute">
       <AnimatePresence>
         <div className="text-white w-full h-full absolute z-[-1]">
-          <Canvas>
+          <Canvas shadows={"soft"}>
             <MenuBackground />
           </Canvas>
         </div>

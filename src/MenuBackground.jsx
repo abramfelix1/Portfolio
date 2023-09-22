@@ -13,6 +13,10 @@ import {
   useMatcapTexture,
   useTexture,
   Plane,
+  OrbitControls,
+  useHelper,
+  ContactShadows,
+  Sky,
 } from "@react-three/drei";
 import * as THREE from "three";
 import {
@@ -22,15 +26,19 @@ import {
   Pixelation,
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
+import { useControls } from "leva";
 
 const material = new THREE.MeshMatcapMaterial({
   transparent: true,
 });
 
 export default function MenuBackground({ onLoad, setOnLoad }) {
+  const directionalLightRef = useRef();
+  const meshRef = useRef();
+
   const { viewport } = useThree();
   // const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 1024);
-  const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 1024);
+  const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 256);
   // const [matcapTexture] = useMatcapTexture("8B892C_D4E856_475E2D_47360A", 1024);
   // const [matcapTexture] = useMatcapTexture("E6BF3C_5A4719_977726_FCFC82", 1024);
   // const [matcapTexture] = useMatcapTexture("B62D33_E4868B_7E2D34_DD6469", 1024);
@@ -109,6 +117,11 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
       2;
 
     depthMaterial.current.uMouse = [newX, newY];
+
+    if (meshRef.current) {
+      meshRef.current.position.x = 0 + newX;
+      meshRef.current.position.y = -2 + -newY;
+    }
 
     if (isStarted) {
       if (textRef.current.scale.x > 0.1 && rename === false) {
@@ -228,10 +241,24 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
     setIsFlippedDown(!isRotated && !isFlippedDown);
   };
 
+  const { envMapIntensity, envMapHeight, envMapRadius, envMapScale } =
+    useControls("environment map", {
+      envMapIntensity: { value: 1, min: 0, max: 12 },
+      envMapHeight: { value: 7, min: 0, max: 100 },
+      envMapRadius: { value: 28, min: 10, max: 1000 },
+      envMapScale: { value: 100, min: 10, max: 1000 },
+    });
+
+  const { sunPosition } = useControls("sky", {
+    sunPosition: { value: [0.4, 2.2, -2.6] },
+  });
+
+  useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1);
+
   return (
     <>
+      {/* <OrbitControls makeDefault /> */}
       <color args={["#ffdf00"]} attach={"background"} />
-
       <EffectComposer>
         <Noise
           premultiply
@@ -245,6 +272,16 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
         />
         <Pixelation granularity={2} />
       </EffectComposer>
+      <ContactShadows
+        position={[0, 0, 0]}
+        scale={10}
+        resolution={512}
+        far={5}
+        // color={color}
+        // opacity={opacity}
+        // blur={blur}
+        frames={1}
+      />
 
       <mesh position={[0, 0, -1]}>
         <Plane
@@ -331,26 +368,32 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
       </a.group>
 
       <directionalLight
-        position={[2, 10, 5]}
-        intensity={0.5}
+        ref={directionalLightRef}
+        position={sunPosition}
+        intensity={1.5}
         castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-        shadow-camera-far={50}
-        shadow-camera-left={-10}
-        shadow-camera-right={10}
-        shadow-camera-top={10}
-        shadow-camera-bottom={-10}
+        shadow-mapSize={[1024, 1024]}
+        shadow-camera-near={1}
+        shadow-camera-far={10}
+        shadow-camera-top={5}
+        shadow-camera-right={5}
+        shadow-camera-bottom={-5}
+        shadow-camera-left={-5}
       />
 
-      {/* <mesh
+      <ambientLight intensity={0.5} />
+      <Sky sunPosition={sunPosition} />
+
+      <mesh
+        ref={meshRef}
         receiveShadow
-        position={[0, -fontSize / 2, 0]}
+        position={[0, -2, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
       >
         <planeBufferGeometry attach="geometry" args={[10, 10]} />
-        <meshStandardMaterial attach="material" color="gray" />
-      </mesh> */}
+
+        <shadowMaterial color="red" transparent opacity={0.15} />
+      </mesh>
     </>
   );
 }

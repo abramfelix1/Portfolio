@@ -15,6 +15,7 @@
     "framer-motion": "^10.16.4",
     "gsap": "^3.11.5",
     "howler": "^2.2.3",
+    "leva": "^0.9.35",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
