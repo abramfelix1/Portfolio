@@ -11,11 +11,14 @@ export default function Loading() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowLoadingIcon(false);
-      setShowMainMenu(true);
     }, 4000);
+    const timer2 = setTimeout(() => {
+      setShowMainMenu(true);
+    }, 3000);
 
     return () => {
       clearTimeout(timer);
+      clearTimeout(timer2);
     };
   }, [setShowLoadingIcon, setShowMainMenu]);
 

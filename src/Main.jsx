@@ -58,14 +58,14 @@ export default function Main() {
             >
               Please Turn ON Hardware Acceleration For The Best Experience
             </motion.p>
-            <motion.img
+            {/* <motion.img
               key="hardware"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { duration: 1.5 } }}
               src="./pictures/hardwareAccel.png"
               alt="hardware accellaration"
               className="w-[1000px]"
-            />
+            /> */}
             <div className="absolute right-0 bottom-8 pr-8 z-50 select-none">
               <p className="blink text-white">Click Anywhere to continue</p>
             </div>

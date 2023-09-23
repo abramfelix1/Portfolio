@@ -39,10 +39,10 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
   const { viewport } = useThree();
   // const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 1024);
   const [matcapTexture] = useMatcapTexture("AC8942_432D19_6E4D27_5F3B1C", 256);
-  // const [matcapTexture] = useMatcapTexture("8B892C_D4E856_475E2D_47360A", 1024);
+  // const [matcapTexture] = useMatcapTexture("8B892C_D4E856_475E2D_47360A", 256);
   // const [matcapTexture] = useMatcapTexture("E6BF3C_5A4719_977726_FCFC82", 1024);
   // const [matcapTexture] = useMatcapTexture("B62D33_E4868B_7E2D34_DD6469", 1024);
-  // const [matcapTexture] = useMatcapTexture("2A4BA7_1B2D44_1F3768_233C81", 1024);
+  // const [matcapTexture] = useMatcapTexture("2A4BA7_1B2D44_1F3768_233C81", 256);
   const texture = useTexture("./pictures/lake2.png");
   const depthMap = useTexture("./pictures/lake2-depth.png");
 
@@ -332,7 +332,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
                 height={0.2}
                 curveSegments={2}
                 bevelEnabled
-                bevelThickness={0.3}
+                bevelThickness={0.2}
                 bevelSize={0.1}
                 bevelOffset={0.015}
                 bevelSegments={25}
@@ -355,7 +355,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
             height={0.2}
             curveSegments={2}
             bevelEnabled
-            bevelThickness={0.3}
+            bevelThickness={0.2}
             bevelSize={0.1}
             bevelOffset={0.015}
             bevelSegments={25}
@@ -392,7 +392,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
       >
         <planeBufferGeometry attach="geometry" args={[10, 10]} />
 
-        <shadowMaterial color="red" transparent opacity={0.15} />
+        <shadowMaterial color="red" transparent opacity={0.1} />
       </mesh>
     </>
   );
