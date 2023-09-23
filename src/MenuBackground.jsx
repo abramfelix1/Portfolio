@@ -27,6 +27,7 @@ import {
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import { useControls } from "leva";
+import { generatePerlinNoise } from "perlin-noise";
 
 const material = new THREE.MeshMatcapMaterial({
   transparent: true,
@@ -63,11 +64,11 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
   useEffect(() => {
     const ambienceSound = new Howl({
       src: ["./sounds/allstar.mp3"],
-      volume: 0.05,
+      volume: 0.07,
       loop: false,
       onplay: (id) => {
         const timeoutId = setTimeout(() => {
-          ambienceSound.fade(0.1, 0, 2000, id);
+          ambienceSound.fade(0.08, 0, 2000, id);
           playNewInstance();
         }, 68000);
 
@@ -81,7 +82,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
     const playNewInstance = () => {
       const newInstanceId = ambienceSound.play();
       playingInstances.push(newInstanceId);
-      ambienceSound.fade(0, 0.1, 2000, newInstanceId);
+      ambienceSound.fade(0, 0.07, 2000, newInstanceId);
     };
 
     playNewInstance();
@@ -110,11 +111,12 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
 
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
+
     const newY =
-      (Math.sin(time * 1) * (maxPeakY - minPeakY) + (maxPeakY + minPeakY)) / 2;
+      (Math.sin(time * 1) * (maxPeakY - minPeakY) + (maxPeakY + minPeakY)) / 4;
     const newX =
       (Math.sin(time * 0.0) * (maxPeakX - minPeakX) + (maxPeakX + minPeakX)) /
-      2;
+      4;
 
     depthMaterial.current.uMouse = [newX, newY];
 
@@ -250,7 +252,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
     });
 
   const { sunPosition } = useControls("sky", {
-    sunPosition: { value: [0.4, 2.2, -2.6] },
+    sunPosition: { value: [0.0, 1.16, -1.15] },
   });
 
   useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1);

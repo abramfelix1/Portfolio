@@ -9,7 +9,7 @@ export default function MainMenu() {
 
   const menuNav = new Howl({
     src: ["./sounds/menuNav.mp3"],
-    volume: 0.1,
+    volume: 0.025,
     loop: false,
   });
 
@@ -18,7 +18,7 @@ export default function MainMenu() {
   return (
     <div className="w-full h-full absolute">
       <AnimatePresence>
-        <div className="text-white w-full h-full absolute z-[-1]">
+        <div className="text-white w-full h-full absolute z-[-1] pointer-events-auto">
           <Canvas shadows={"soft"}>
             <MenuBackground />
           </Canvas>
