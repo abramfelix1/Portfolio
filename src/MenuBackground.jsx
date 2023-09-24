@@ -243,19 +243,17 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
     setIsFlippedDown(!isRotated && !isFlippedDown);
   };
 
-  const { envMapIntensity, envMapHeight, envMapRadius, envMapScale } =
-    useControls("environment map", {
-      envMapIntensity: { value: 1, min: 0, max: 12 },
-      envMapHeight: { value: 7, min: 0, max: 100 },
-      envMapRadius: { value: 28, min: 10, max: 1000 },
-      envMapScale: { value: 100, min: 10, max: 1000 },
-    });
+  // const { envMapIntensity, envMapHeight, envMapRadius, envMapScale } =
+  //   useControls("environment map", {
+  //     envMapIntensity: { value: 1, min: 0, max: 12 },
+  //     envMapHeight: { value: 7, min: 0, max: 100 },
+  //     envMapRadius: { value: 28, min: 10, max: 1000 },
+  //     envMapScale: { value: 100, min: 10, max: 1000 },
+  //   });
 
-  const { sunPosition } = useControls("sky", {
-    sunPosition: { value: [0.0, 1.16, -1.15] },
-  });
+  const sunPosition = [0.0, 1.16, -1.15];
 
-  useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1);
+  // useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1);
 
   return (
     <>

@@ -38,7 +38,7 @@ export default function MainMenu() {
               setHovered("Projects");
               menuNav.play();
             }}
-            // onMouseLeave={() => setHovered(null)}
+            onMouseLeave={() => setHovered(null)}
             className="w-fit"
           >
             Projects
@@ -54,7 +54,7 @@ export default function MainMenu() {
               setHovered("About");
               menuNav.play();
             }}
-            // onMouseLeave={() => setHovered(null)}
+            onMouseLeave={() => setHovered(null)}
             className="w-fit"
           >
             About Me
@@ -71,7 +71,7 @@ export default function MainMenu() {
               setHovered("Contact");
               menuNav.play();
             }}
-            // onMouseLeave={() => setHovered(null)}
+            onMouseLeave={() => setHovered(null)}
             className="w-fit"
           >
             Contact
@@ -81,12 +81,13 @@ export default function MainMenu() {
           )}
         </div>
         {hovered && (
-          <div className="flex items-center justify-between w-full text-white bg-[rgb(0,0,0,0.4)] absolute select-none pointer-events-none bottom-10 p-2 px-10">
+          <div className="flex items-center justify-between w-full text-white bg-[rgb(0,0,0,0.3)] absolute select-none pointer-events-none bottom-10 p-2 px-10">
             <p className="font-normal text-3xl">
               {hovered === "Projects" && "Browse my projects."}
               {hovered === "About" && "Learn more about me."}
               {hovered === "Contact" && "Find ways to contact me."}
             </p>
+            <p className="font-normal text-xl"> click to continue</p>
           </div>
         )}
       </div>
