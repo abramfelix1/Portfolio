@@ -6,6 +6,7 @@ import { Howl } from "howler";
 import Loading from "./Loading";
 import { ViewContext } from "./context/ViewContext";
 import MainMenu from "./MainMenu";
+import ContactPage from "./ContactPage";
 
 export default function Main() {
   const {
@@ -14,8 +15,15 @@ export default function Main() {
     showLoading,
     setShowLoading,
     showMainMenu,
+    setShowMainMenu,
     showWarning,
     setShowWarning,
+    showProjects,
+    setShowProjects,
+    showAbout,
+    setShowAbout,
+    showContact,
+    setShowContact,
   } = useContext(ViewContext);
   const [showStart, setShowStart] = useState(true);
 
@@ -102,6 +110,7 @@ export default function Main() {
       </AnimatePresence>
       {showLoading && <Loading />}
       {showMainMenu && <MainMenu />}
+      {showContact && <ContactPage />}
     </div>
   );
 }

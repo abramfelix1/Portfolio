@@ -7,6 +7,9 @@ export const ViewProvider = ({ children }) => {
   const [showLoading, setShowLoading] = useState(false);
   const [showMainMenu, setShowMainMenu] = useState(false);
   const [showWarning, setShowWarning] = useState(true);
+  const [showProjects, setShowProjects] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   return (
     <ViewContext.Provider
@@ -19,6 +22,12 @@ export const ViewProvider = ({ children }) => {
         setShowMainMenu,
         showWarning,
         setShowWarning,
+        showProjects,
+        setShowProjects,
+        showAbout,
+        setShowAbout,
+        showContact,
+        setShowContact,
       }}
     >
       {children}

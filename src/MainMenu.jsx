@@ -1,11 +1,14 @@
 import { Canvas } from "@react-three/fiber";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuBackground from "./MenuBackground";
 import { Howl } from "howler";
+import { ViewContext } from "./context/ViewContext";
 
 export default function MainMenu() {
   const [hovered, setHovered] = useState("Projects");
+  const { setShowProjects, setShowAbout, setShowContact } =
+    useContext(ViewContext);
 
   const menuNav = new Howl({
     src: ["./sounds/menuNav.mp3"],
@@ -33,7 +36,10 @@ export default function MainMenu() {
       <div className="flex flex-col h-full text-white z-50 text-7xl font-bold gap-y-10 justify-center py-36 select-none">
         <div className="flex flex-col relative px-36">
           <p
-            onClick={() => menuClick.play()}
+            onClick={() => {
+              menuClick.play();
+              setShowProjects(true);
+            }}
             onMouseEnter={() => {
               setHovered("Projects");
               menuNav.play();
@@ -49,7 +55,10 @@ export default function MainMenu() {
         </div>
         <div className="flex flex-col relative px-36">
           <p
-            onClick={() => menuClick.play()}
+            onClick={() => {
+              menuClick.play();
+              setShowAbout(true);
+            }}
             onMouseEnter={() => {
               setHovered("About");
               menuNav.play();
@@ -65,7 +74,10 @@ export default function MainMenu() {
         </div>
         <div className="flex flex-col relative px-36">
           <p
-            onClick={() => menuClick.play()}
+            onClick={() => {
+              menuClick.play();
+              setShowContact(true);
+            }}
             onMouseEnter={(e) => {
               e.stopPropagation();
               setHovered("Contact");
