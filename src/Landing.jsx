@@ -55,7 +55,7 @@ export default function Landing({ onLoad, setOnLoad }) {
   useEffect(() => {
     const ambienceSound = new Howl({
       src: ["./sounds/wind.wav"],
-      volume: 0.1,
+      volume: 0.25,
       loop: false,
       onplay: (id) => {
         const timeoutId = setTimeout(() => {
@@ -73,7 +73,7 @@ export default function Landing({ onLoad, setOnLoad }) {
     const playNewInstance = () => {
       const newInstanceId = ambienceSound.play();
       playingInstances.push(newInstanceId);
-      ambienceSound.fade(0, 0.1, 2000, newInstanceId);
+      ambienceSound.fade(0, 0.25, 2000, newInstanceId);
     };
 
     playNewInstance();

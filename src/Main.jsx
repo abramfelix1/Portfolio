@@ -30,7 +30,7 @@ export default function Main() {
 
   const startSound = new Howl({
     src: ["./sounds/start.mp3"],
-    volume: 0.1,
+    volume: 0.3,
     loop: false,
   });
 

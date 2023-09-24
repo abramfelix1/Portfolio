@@ -5,15 +5,21 @@ import MenuBackground from "./MenuBackground";
 import { Howl } from "howler";
 
 export default function MainMenu() {
-  const [hovered, setHovered] = useState();
+  const [hovered, setHovered] = useState("Projects");
 
   const menuNav = new Howl({
     src: ["./sounds/menuNav.mp3"],
-    volume: 0.025,
+    volume: 0.1,
     loop: false,
   });
 
-  menuNav.seek(0.2);
+  const menuClick = new Howl({
+    src: ["./sounds/menuClick.mp3"],
+    volume: 0.2,
+    loop: false,
+  });
+
+  menuNav.seek(0.25);
 
   return (
     <div className="w-full h-full absolute">
@@ -24,14 +30,15 @@ export default function MainMenu() {
           </Canvas>
         </div>
       </AnimatePresence>
-      <div className="flex flex-col h-full text-white z-50 text-7xl font-bold gap-y-10 justify-center p-36 select-none">
-        <div className="flex flex-col relative">
+      <div className="flex flex-col h-full text-white z-50 text-7xl font-bold gap-y-10 justify-center py-36 select-none">
+        <div className="flex flex-col relative px-36">
           <p
+            onClick={() => menuClick.play()}
             onMouseEnter={() => {
               setHovered("Projects");
               menuNav.play();
             }}
-            onMouseLeave={() => setHovered(null)}
+            // onMouseLeave={() => setHovered(null)}
             className="w-fit"
           >
             Projects
@@ -40,13 +47,14 @@ export default function MainMenu() {
             <div className="w-[350px] h-[2px] bg-gradient-to-r from-white mb-2 absolute bottom-[-10px] pointer-events-none"></div>
           )}
         </div>
-        <div className="flex flex-col relative">
+        <div className="flex flex-col relative px-36">
           <p
+            onClick={() => menuClick.play()}
             onMouseEnter={() => {
               setHovered("About");
               menuNav.play();
             }}
-            onMouseLeave={() => setHovered(null)}
+            // onMouseLeave={() => setHovered(null)}
             className="w-fit"
           >
             About Me
@@ -55,14 +63,15 @@ export default function MainMenu() {
             <div className="w-[350px] h-[2px] bg-gradient-to-r from-white mb-2 absolute bottom-[-10px] pointer-events-none"></div>
           )}
         </div>
-        <div className="flex flex-col relative">
+        <div className="flex flex-col relative px-36">
           <p
+            onClick={() => menuClick.play()}
             onMouseEnter={(e) => {
               e.stopPropagation();
               setHovered("Contact");
               menuNav.play();
             }}
-            onMouseLeave={() => setHovered(null)}
+            // onMouseLeave={() => setHovered(null)}
             className="w-fit"
           >
             Contact
@@ -71,6 +80,15 @@ export default function MainMenu() {
             <div className="w-[350px] h-[2px] bg-gradient-to-r from-white mb-2 absolute bottom-[-10px] pointer-events-none"></div>
           )}
         </div>
+        {hovered && (
+          <div className="flex items-center justify-between w-full text-white bg-[rgb(0,0,0,0.4)] absolute select-none pointer-events-none bottom-10 p-2 px-10">
+            <p className="font-normal text-3xl">
+              {hovered === "Projects" && "Browse my projects."}
+              {hovered === "About" && "Learn more about me."}
+              {hovered === "Contact" && "Find ways to contact me."}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

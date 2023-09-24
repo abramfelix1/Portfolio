@@ -64,7 +64,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
   useEffect(() => {
     const ambienceSound = new Howl({
       src: ["./sounds/allstar.mp3"],
-      volume: 0.07,
+      volume: 0.3,
       loop: false,
       onplay: (id) => {
         const timeoutId = setTimeout(() => {
@@ -82,7 +82,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
     const playNewInstance = () => {
       const newInstanceId = ambienceSound.play();
       playingInstances.push(newInstanceId);
-      ambienceSound.fade(0, 0.07, 2000, newInstanceId);
+      ambienceSound.fade(0, 0.3, 2000, newInstanceId);
     };
 
     playNewInstance();
@@ -372,15 +372,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
       <directionalLight
         ref={directionalLightRef}
         position={sunPosition}
-        intensity={1.5}
         castShadow
-        shadow-mapSize={[1024, 1024]}
-        shadow-camera-near={1}
-        shadow-camera-far={10}
-        shadow-camera-top={5}
-        shadow-camera-right={5}
-        shadow-camera-bottom={-5}
-        shadow-camera-left={-5}
       />
 
       <ambientLight intensity={0.5} />
@@ -394,7 +386,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
       >
         <planeBufferGeometry attach="geometry" args={[10, 10]} />
 
-        <shadowMaterial color="red" transparent opacity={0.1} />
+        <shadowMaterial color="gold" transparent opacity={0.3} />
       </mesh>
     </>
   );
