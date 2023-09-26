@@ -43,7 +43,7 @@ export default function Loading() {
         </div>
       ) : (
         <div className="absolute right-0 bottom-8 pr-8 z-50 select-none">
-          <p className="blink text-white">Click Anywhere to continue</p>
+          <p className="blink text-white">Click Anywhere to Continue</p>
         </div>
       )}
       <div className="flex flex-col relative w-full h-full justify-end px-20 pb-36 text-white z-40 bg-black select-none">

@@ -91,7 +91,7 @@ export default function Main() {
               />
             )}
             <div className="absolute right-0 bottom-8 pr-8 z-50 select-none">
-              <p className="blink text-white">Click Anywhere to continue</p>
+              <p className="blink text-white">Click Anywhere to Continue</p>
             </div>
           </div>
         </AnimatePresence>
@@ -111,7 +111,7 @@ export default function Main() {
                   className="blink text-white text-xs z-40"
                   onClick={handleExit}
                 >
-                  CLICK TO START
+                  CLICK HERE TO START
                 </p>
               )}
               <p className="text-white text-xs z-40 select-none pointer-events-none">

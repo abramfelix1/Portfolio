@@ -59,6 +59,13 @@ export default function AboutMe() {
               </div>
               <img src="./pictures/aboutPhoto.jpg" alt="me" className="py-20" />
             </div>
+            <div
+              className="flex text-white text-xl w-full justify-end items-center px-10 select-none"
+              onClick={() => setShowAbout(false)}
+            >
+              <img src="./pictures/escKey.png" alt="me" className="w-16 px-2" />
+              <p className="">Exit About Me</p>
+            </div>
           </motion.div>
         )}
       </motion.div>
