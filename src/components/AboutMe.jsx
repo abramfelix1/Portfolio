@@ -57,7 +57,11 @@ export default function AboutMe() {
               <div className="text-white">
                 <p>hi</p>
               </div>
-              <img src="./pictures/aboutPhoto.jpg" alt="me" className="py-20" />
+              <img
+                src="./pictures/aboutPhoto4.jpg"
+                alt="me"
+                className="my-20 border-[1px] border-white rounded-3xl"
+              />
             </div>
             <div
               className="flex text-white text-xl w-full justify-end items-center px-10 select-none"

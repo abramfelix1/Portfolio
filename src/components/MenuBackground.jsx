@@ -37,6 +37,7 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
   const { showAbout } = useContext(ViewContext);
   const directionalLightRef = useRef();
   const meshRef = useRef();
+  const initialRender = useRef(true);
 
   const { viewport } = useThree();
   // const [matcapTexture] = useMatcapTexture("1A2461_3D70DB_2C3C8F_2C6CAC", 1024);
@@ -245,8 +246,12 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
   };
 
   useEffect(() => {
-    showAbout && vClickHandler();
-    !showAbout && vClickHandler();
+    if (initialRender.current) {
+      initialRender.current = false;
+      return;
+    }
+
+    vClickHandler();
   }, [showAbout]);
 
   // const { envMapIntensity, envMapHeight, envMapRadius, envMapScale } =
