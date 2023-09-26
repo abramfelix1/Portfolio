@@ -6,7 +6,7 @@ import { Howl } from "howler";
 import Loading from "./Loading";
 import { ViewContext } from "../context/ViewContext";
 import MainMenu from "./MainMenu";
-import ContactPage from "../ContactPage";
+import ContactPage from "./ContactPage";
 import AboutMe from "./AboutMe";
 
 export default function Main() {

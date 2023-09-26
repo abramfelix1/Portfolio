@@ -244,6 +244,11 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
     setIsFlippedDown(!isRotated && !isFlippedDown);
   };
 
+  useEffect(() => {
+    showAbout && vClickHandler();
+    !showAbout && vClickHandler();
+  }, [showAbout]);
+
   // const { envMapIntensity, envMapHeight, envMapRadius, envMapScale } =
   //   useControls("environment map", {
   //     envMapIntensity: { value: 1, min: 0, max: 12 },

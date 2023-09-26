@@ -24,20 +24,6 @@ export default function MainMenu() {
 
   menuNav.seek(0.25);
 
-  useEffect(() => {
-    const handleEsc = (event) => {
-      if (event.key === "Escape") {
-        setShowContact(false);
-      }
-    };
-
-    document.addEventListener("keydown", handleEsc);
-
-    return () => {
-      document.removeEventListener("keydown", handleEsc);
-    };
-  }, [setShowContact]);
-
   return (
     <div className="w-full h-full absolute">
       <AnimatePresence>
@@ -54,6 +40,7 @@ export default function MainMenu() {
               onClick={() => {
                 menuClick.play();
                 setShowProjects(true);
+                setHovered(null);
               }}
               onMouseEnter={() => {
                 setHovered("Projects");
@@ -75,6 +62,7 @@ export default function MainMenu() {
               onClick={() => {
                 menuClick.play();
                 setShowAbout(true);
+                setHovered(null);
               }}
               onMouseEnter={() => {
                 setHovered("About");
@@ -96,6 +84,7 @@ export default function MainMenu() {
               onClick={() => {
                 menuClick.play();
                 setShowContact(true);
+                setHovered(null);
               }}
               onMouseEnter={(e) => {
                 e.stopPropagation();

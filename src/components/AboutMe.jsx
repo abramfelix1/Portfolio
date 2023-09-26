@@ -48,9 +48,9 @@ export default function AboutMe() {
           >
             <div className="flex items-center pt-20">
               <div className="w-32 h-[1px] bg-white"></div>
-              <p className="text-xl text-white font-normal whitespace-nowrap px-2">
+              <i className="text-xl text-white font-normal whitespace-nowrap px-2">
                 About Me
-              </p>
+              </i>
               <div className="w-full h-[1px] bg-white"></div>
             </div>
             <div className="flex w-full h-full justify-between px-40 border-y-[1px] border-white bg-[rgb(0,0,0,0.5)]">

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { ViewContext } from "./context/ViewContext";
+import React, { useContext, useEffect } from "react";
+import { ViewContext } from "../context/ViewContext";
 import { Howl } from "howler";
 export default function ContactPage() {
   const { setShowContact } = useContext(ViewContext);
@@ -9,6 +9,21 @@ export default function ContactPage() {
     volume: 0.15,
     loop: false,
   });
+
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === "Escape") {
+        setShowContact(false);
+        menuExit.play();
+      }
+    };
+
+    document.addEventListener("keydown", handleEsc);
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+    };
+  }, [setShowContact]);
 
   return (
     <div
