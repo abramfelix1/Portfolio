@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useFrame, useThree, extend } from "@react-three/fiber";
 import { useSpring, animated as a } from "@react-spring/three";
 import { Howl } from "howler";
-import { ViewContext } from "./context/ViewContext";
+import { ViewContext } from "../context/ViewContext";
 
 import {
   Text3D,
@@ -34,6 +34,7 @@ const material = new THREE.MeshMatcapMaterial({
 });
 
 export default function MenuBackground({ onLoad, setOnLoad }) {
+  const { showAbout } = useContext(ViewContext);
   const directionalLightRef = useRef();
   const meshRef = useRef();
 
@@ -180,8 +181,8 @@ export default function MenuBackground({ onLoad, setOnLoad }) {
       scaleX: 3.5,
     },
     to: {
-      positionX: 2.0,
-      positionY: -1.2,
+      positionX: showAbout ? 1.0 : 2.0,
+      positionY: showAbout ? -1.5 : -1.2,
       positionZ: 1,
       rotation: 0,
       opacity: 0,

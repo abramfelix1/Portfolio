@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useFrame, useThree, extend, Canvas } from "@react-three/fiber";
-import LoadingIcon from "./LoadingIcon";
+import LoadingIcon from "./LoadingIcon.jsx";
 import { motion, AnimatePresence } from "framer-motion";
-import { ViewContext } from "./context/ViewContext";
+import { ViewContext } from "../context/ViewContext";
 
 export default function Loading() {
   const [showLoadingIcon, setShowLoadingIcon] = useState(true);

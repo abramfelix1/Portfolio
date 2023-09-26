@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useFrame, useThree, extend } from "@react-three/fiber";
 import { useSpring, animated as a } from "@react-spring/three";
 import { Howl } from "howler";
-import { ViewContext } from "./context/ViewContext";
+import { ViewContext } from "../context/ViewContext";
 
 import {
   Text3D,

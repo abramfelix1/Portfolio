@@ -4,9 +4,10 @@ import { Canvas } from "@react-three/fiber";
 import { motion, AnimatePresence } from "framer-motion";
 import { Howl } from "howler";
 import Loading from "./Loading";
-import { ViewContext } from "./context/ViewContext";
+import { ViewContext } from "../context/ViewContext";
 import MainMenu from "./MainMenu";
-import ContactPage from "./ContactPage";
+import ContactPage from "../ContactPage";
+import AboutMe from "./AboutMe";
 
 export default function Main() {
   const {
@@ -126,6 +127,7 @@ export default function Main() {
       {showLoading && <Loading />}
       {showMainMenu && <MainMenu />}
       {showContact && <ContactPage />}
+      {showAbout && <AboutMe />}
     </div>
   );
 }

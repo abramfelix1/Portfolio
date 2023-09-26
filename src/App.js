@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import Landing from "./Landing.jsx";
+import Landing from "./components/Landing.jsx";
 import { Routes, Route } from "react-router-dom";
-import Menu from "./Loading.jsx";
-import Main from "./Main.jsx";
+import Main from "./components/Main.jsx";
 
 const root = document.getElementById("root");
 
@@ -13,7 +12,6 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/home" element={<Menu />} />
     </Routes>
   );
 }
