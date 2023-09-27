@@ -65,10 +65,13 @@ export default function ProjectsPage() {
               <div className="w-full h-[1px] bg-white"></div>
             </div>
             <div className="flex w-full h-full justify-between border-y-[1px] pt-4 border-white bg-[rgb(0,0,0,0.25)] backdrop-filter backdrop-saturate-[.25]">
-              <div className="text-white text-lg font-medium leading-none w-56">
+              <div className="text-white text-2xl leading-none w-80 select-none">
                 {projectNames.map((name) => (
-                  <div className="flex flex-col justify-end items-center w-full bg-gradient-to-r from-black to-transparent px-2 pt-2 border-b-[2px] border-[rgb(255,255,255,0.25)]">
-                    <p>{name}</p>
+                  <div className="flex flex-col justify-end items-center w-full bg-gradient-to-r from-black to-transparent pt-4 ">
+                    <div className="flex justify-start items-start w-[80px]">
+                      <p>{name}</p>
+                    </div>
+                    <div className="w-full h-[2px] bg-gradient-to-r from-[rgb(255,255,255,0.25)] from-80% to-transparent"></div>
                   </div>
                 ))}
               </div>
