@@ -15,14 +15,13 @@ export default function MainMenu() {
     volume: 0.1,
     loop: false,
   });
+  menuNav.seek(0.25);
 
   const menuClick = new Howl({
     src: ["./sounds/menuClick.mp3"],
     volume: 0.2,
     loop: false,
   });
-
-  menuNav.seek(0.25);
 
   return (
     <div className="w-full h-full absolute">
