@@ -132,9 +132,8 @@ export default function Main() {
       <AnimatePresence>
         {showProjects && (
           <motion.div
-            key="transition"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.25 } }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.55 } }}
             className="w-full h-full"
           >

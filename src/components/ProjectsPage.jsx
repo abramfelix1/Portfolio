@@ -52,7 +52,7 @@ export default function ProjectsPage() {
             key="about"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { duration: 0.25 } }}
-            style={{ backgroundImage: `url('/pictures/workdesk2.png')` }}
+            style={{ backgroundImage: `url('/pictures/workdesk5.png')` }}
             className="flex flex-col w-full h-full bg-cover bg-center bg-no-repeat bg-blue-100 z-50 relative pb-24"
           >
             <div className="flex items-center pt-20">
