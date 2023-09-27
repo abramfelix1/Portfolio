@@ -4,7 +4,7 @@ import { ViewContext } from "../context/ViewContext";
 import { Howl } from "howler";
 
 export default function ProjectsPage() {
-  const [hovered, setHovered] = useState(null);
+  const [hovered, setHovered] = useState("???");
   const { setShowProjects } = useContext(ViewContext);
   const [showPage, setShowPage] = useState(null);
 
@@ -100,8 +100,10 @@ export default function ProjectsPage() {
                       key={idx}
                       className="flex flex-col justify-end items-center w-full bg-gradient-to-r from-black to-transparent pt-4 relative"
                       onMouseEnter={() => {
-                        setHovered(name);
-                        if (hovered !== "???") menuNav.play();
+                        if (name !== "???") {
+                          menuNav.play();
+                          setHovered(name);
+                        }
                       }}
                       onMouseLeave={() => {
                         setHovered(null);
@@ -138,7 +140,7 @@ export default function ProjectsPage() {
                   menuExit.play();
                 }}
               >
-                {hovered && hovered !== "???" && (
+                {hovered !== "???" && (
                   <p className="flex justify-self-end">
                     Click to Visit {hovered}
                   </p>
