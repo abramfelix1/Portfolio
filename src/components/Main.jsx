@@ -8,6 +8,7 @@ import { ViewContext } from "../context/ViewContext";
 import MainMenu from "./MainMenu";
 import ContactPage from "./ContactPage";
 import AboutMe from "./AboutMe";
+import ProjectsPage from "./ProjectsPage";
 
 export default function Main() {
   const {
@@ -128,6 +129,19 @@ export default function Main() {
       {showMainMenu && <MainMenu />}
       {showContact && <ContactPage />}
       {showAbout && <AboutMe />}
+      <AnimatePresence>
+        {showProjects && (
+          <motion.div
+            key="transition"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.25 } }}
+            exit={{ opacity: 0, transition: { duration: 0.55 } }}
+            className="w-full h-full"
+          >
+            <ProjectsPage />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
