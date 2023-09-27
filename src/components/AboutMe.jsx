@@ -61,7 +61,7 @@ export default function AboutMe() {
               </i>
               <div className="w-full h-[1px] bg-white"></div>
             </div>
-            <div className="flex w-full h-full justify-between px-40 border-y-[1px] border-white bg-[rgb(0,0,0,0.5)] backdrop-saturate-[.25]">
+            <div className="flex w-full h-full justify-between px-40 border-y-[1px] border-white bg-[rgb(0,0,0,0.25)] backdrop-saturate-[.25]">
               <div className="text-white">
                 <p>hi</p>
               </div>

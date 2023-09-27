@@ -7,6 +7,8 @@ export default function ProjectsPage() {
   const { setShowProjects } = useContext(ViewContext);
   const [showPage, setShowPage] = useState(null);
 
+  const projectNames = ["HeartBeats", "Accord", "Seabnb"];
+
   const menuExit = new Howl({
     src: ["./sounds/menuExit.mp3"],
     volume: 0.15,
@@ -62,10 +64,15 @@ export default function ProjectsPage() {
               </i>
               <div className="w-full h-[1px] bg-white"></div>
             </div>
-            <div className="flex w-full h-full justify-between px-40 border-y-[1px] border-white bg-[rgb(0,0,0,0.5)] backdrop-filter backdrop-saturate-[.25]">
-              <div className="text-white">
-                <p>hi</p>
+            <div className="flex w-full h-full justify-between border-y-[1px] pt-4 border-white bg-[rgb(0,0,0,0.25)] backdrop-filter backdrop-saturate-[.25]">
+              <div className="text-white text-lg font-medium leading-none w-56">
+                {projectNames.map((name) => (
+                  <div className="flex flex-col justify-end items-center w-full bg-gradient-to-r from-black to-transparent px-2 pt-2 border-b-[2px] border-[rgb(255,255,255,0.25)]">
+                    <p>{name}</p>
+                  </div>
+                ))}
               </div>
+              <div className="text-white">AAAAAAAAAAAAAAAAAA</div>
             </div>
           </motion.div>
         )}
