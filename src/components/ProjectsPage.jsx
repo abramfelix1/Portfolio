@@ -66,16 +66,32 @@ export default function ProjectsPage() {
             </div>
             <div className="flex w-full h-full justify-between border-y-[1px] pt-4 border-white bg-[rgb(0,0,0,0.25)] backdrop-filter backdrop-saturate-[.25]">
               <div className="text-white text-2xl leading-none w-80 select-none">
+                <div className="w-full h-[2px] mb-[1px] bg-gradient-to-r from-[rgb(0,0,0,0.50)] from-80% to-transparent"></div>
                 {projectNames.map((name) => (
-                  <div className="flex flex-col justify-end items-center w-full bg-gradient-to-r from-black to-transparent pt-4 ">
-                    <div className="flex justify-start items-start w-[80px]">
+                  <div className="flex flex-col justify-end items-center w-full bg-gradient-to-r from-black to-transparent pt-4 relative">
+                    <div className="flex justify-start items-start w-[100px]">
                       <p>{name}</p>
                     </div>
+                    <img
+                      src={"./pictures/pointer2.png"}
+                      alt="pointer"
+                      className="absolute w-8 left-20 bottom-[-6px] z-50"
+                    />
                     <div className="w-full h-[2px] bg-gradient-to-r from-[rgb(255,255,255,0.25)] from-80% to-transparent"></div>
                   </div>
                 ))}
               </div>
               <div className="text-white">AAAAAAAAAAAAAAAAAA</div>
+            </div>
+            <div
+              className="flex text-white text-xl w-full justify-end items-center px-10 select-none"
+              onClick={() => {
+                setShowProjects(false);
+                menuExit.play();
+              }}
+            >
+              <img src="./pictures/escKey.png" alt="me" className="w-16 px-2" />
+              <p className="">Exit Projects</p>
             </div>
           </motion.div>
         )}
