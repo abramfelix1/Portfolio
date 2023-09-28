@@ -27,7 +27,6 @@ import {
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import { useControls } from "leva";
-import { generatePerlinNoise } from "perlin-noise";
 
 const material = new THREE.MeshMatcapMaterial({
   transparent: true,

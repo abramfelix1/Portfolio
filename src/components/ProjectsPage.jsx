@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ViewContext } from "../context/ViewContext";
 import { Howl } from "howler";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel, Navigation, FreeMode } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 export default function ProjectsPage() {
   const [hovered, setHovered] = useState("???");
@@ -123,15 +127,37 @@ export default function ProjectsPage() {
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col w-full h-full items-center justify-center">
+                <div className="flex flex-col w-[80%] h-full items-center justify-center">
                   {hovered === "HeartBeats" && (
                     <>
-                      <img
-                        src={"/gifs/heartbeatsHome.gif"}
-                        alt="HeartBeats home"
-                        className="w-[70%] pb-2"
-                      />
-                      <div className="flex flex-col gap-y-2 justify-center items-center text-white">
+                      <div className="w-[70%] pb-2 sm:w-[30%]  md:w-[50%] lg:w-[60%] xl:w-[70%] 2xl:w-[70%]">
+                        <Swiper
+                          slidesPerView={1}
+                          mousewheel={true}
+                          // freeMode={true}
+                          modules={[Mousewheel, Navigation]}
+                        >
+                          <SwiperSlide>
+                            <img
+                              src={"/gifs/heartbeatsHome.gif"}
+                              alt="HeartBeats home"
+                            />
+                          </SwiperSlide>
+                          <SwiperSlide>
+                            <img
+                              src={"/gifs/heartBeatsDemo1.gif"}
+                              alt="HeartBeats demo1"
+                            />
+                          </SwiperSlide>
+                          <SwiperSlide>
+                            <img
+                              src={"/gifs/heartBeatsDemo2.gif"}
+                              alt="HeartBeats demo2"
+                            />
+                          </SwiperSlide>
+                        </Swiper>
+                      </div>
+                      <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
                         <p className="">
                           Technologies: JavaScript, React, Redux, Express,
                           PostgreSQL, TailwindCSS, Spotify API TailwindCSS
