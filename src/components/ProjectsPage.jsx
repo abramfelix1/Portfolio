@@ -283,7 +283,7 @@ export default function ProjectsPage() {
                         </p>
                         <div className="flex gap-x-4">
                           <a
-                            href="https://accord-ajr.onrender.com/"
+                            href="https://airbnb-clone-2u2s.onrender.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium"
@@ -291,7 +291,7 @@ export default function ProjectsPage() {
                             Visit Seabnb
                           </a>
                           <a
-                            href="https://github.com/abramfelix1/Accord"
+                            href="https://github.com/abramfelix1/SeaBnB"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium"
