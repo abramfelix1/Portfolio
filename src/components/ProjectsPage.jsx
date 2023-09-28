@@ -203,7 +203,66 @@ export default function ProjectsPage() {
                     </>
                   )}
                   {hovered === "Accord" && (
-                    <div className="text-white">AAAAAAAAAAAAAAAAAA</div>
+                    <>
+                      <div className="w-[70%] pb-2 sm:w-[30%]  md:w-[50%] lg:w-[60%] xl:w-[70%] 2xl:w-[70%]">
+                        <Swiper
+                          slidesPerView={1}
+                          mousewheel={true}
+                          pagination={{ clickable: true }}
+                          // freeMode={true}
+                          modules={[Mousewheel, Navigation, Pagination]}
+                          onSlideChange={handleSlideChange}
+                        >
+                          {[
+                            "heartBeatsHome",
+                            "heartBeatsDemo1",
+                            "heartBeatsDemo2",
+                          ].map((gif, index) => (
+                            <SwiperSlide key={gif}>
+                              <img
+                                src={
+                                  activeSlide === index
+                                    ? `/gifs/${gif}.gif`
+                                    : `/gifs`
+                                }
+                                data-src={`/gifs/${gif}.gif`}
+                                alt={`HeartBeats ${gif}`}
+                              />
+                            </SwiperSlide>
+                          ))}
+                        </Swiper>
+                      </div>
+                      <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
+                        <p className="">
+                          Technologies: JavaScript, React, Redux, Express,
+                          PostgreSQL, TailwindCSS, Spotify API TailwindCSS
+                        </p>
+                        <p>
+                          HeartBeats is a web application that allows users to
+                          journal their emotions and, in response, curates songs
+                          aligned with their moods, enabling them to craft
+                          personalized playlists.
+                        </p>
+                        <div className="flex gap-x-4">
+                          <a
+                            href="https://heart-beats.onrender.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium"
+                          >
+                            Visit HeartBeats
+                          </a>
+                          <a
+                            href="https://github.com/abramfelix1/HeartBeats"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium"
+                          >
+                            Github
+                          </a>
+                        </div>
+                      </div>
+                    </>
                   )}
                   {hovered === "Seabnb" && (
                     <div className="text-white">AAAAAAAAAAAAAAAAAA</div>
