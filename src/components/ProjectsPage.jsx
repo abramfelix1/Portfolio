@@ -123,6 +123,7 @@ export default function ProjectsPage() {
                         if (name !== "???") {
                           menuNav.play();
                           setHovered(name);
+                          setActiveSlide(0);
                         } else setHovered("???");
                       }}
                       // onMouseLeave={() => {
