@@ -3,9 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ViewContext } from "../context/ViewContext";
 import { Howl } from "howler";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel, Navigation, FreeMode } from "swiper/modules";
+import { Mousewheel, Navigation, FreeMode, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function ProjectsPage() {
   const [hovered, setHovered] = useState("???");
@@ -134,8 +135,9 @@ export default function ProjectsPage() {
                         <Swiper
                           slidesPerView={1}
                           mousewheel={true}
+                          pagination={true}
                           // freeMode={true}
-                          modules={[Mousewheel, Navigation]}
+                          modules={[Mousewheel, Navigation, Pagination]}
                         >
                           <SwiperSlide>
                             <img
