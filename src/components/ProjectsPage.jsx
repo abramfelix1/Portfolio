@@ -44,7 +44,10 @@ export default function ProjectsPage() {
     "/gifs/heartBeatsDemo1.gif",
     "/gifs/heartBeatsDemo2.gif",
   ];
+
   const accordFiles = ["/pictures/accordHome.png", "/gifs/accordDemo.gif"];
+
+  const seabnbFiles = ["/gifs/seabnbDemo.gif"];
 
   const menuExit = new Howl({
     src: ["./sounds/menuExit.mp3"],
@@ -248,7 +251,56 @@ export default function ProjectsPage() {
                     </>
                   )}
                   {hovered === "Seabnb" && (
-                    <div className="text-white">AAAAAAAAAAAAAAAAAA</div>
+                    <>
+                      <div className="w-[70%] pb-2 sm:w-[30%]  md:w-[50%] lg:w-[60%] xl:w-[70%] 2xl:w-[70%]">
+                        <Swiper
+                          slidesPerView={1}
+                          mousewheel={true}
+                          pagination={{ clickable: true }}
+                          // freeMode={true}
+                          modules={[Mousewheel, Navigation, Pagination]}
+                          onSlideChange={handleSlideChange}
+                        >
+                          {seabnbFiles.map((file, idx) => (
+                            <SwiperSlide key={idx}>
+                              <img
+                                src={activeSlide === idx ? file : `/gifs`}
+                                data-src={file}
+                                alt={`Accord ${file}`}
+                              />
+                            </SwiperSlide>
+                          ))}
+                        </Swiper>
+                      </div>
+                      <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
+                        <p className="">
+                          Technologies: JavaScript, React, Redux, Express,
+                          PostgreSQL
+                        </p>
+                        <p>
+                          Seabnb, inspired by Airbnb, my first full-stack
+                          project.
+                        </p>
+                        <div className="flex gap-x-4">
+                          <a
+                            href="https://accord-ajr.onrender.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium"
+                          >
+                            Visit Seabnb
+                          </a>
+                          <a
+                            href="https://github.com/abramfelix1/Accord"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium"
+                          >
+                            Github
+                          </a>
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
               </div>
