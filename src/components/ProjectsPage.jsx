@@ -223,22 +223,20 @@ export default function ProjectsPage() {
                           PostgreSQL Flask-SocketIO, SocketIO, AWS
                         </p>
                         <p>
-                          HeartBeats is a web application that allows users to
-                          journal their emotions and, in response, curates songs
-                          aligned with their moods, enabling them to craft
-                          personalized playlists.
+                          Accord, inspired by Discord, provides a platform for
+                          users to connect and engage within communities.
                         </p>
                         <div className="flex gap-x-4">
                           <a
-                            href="https://heart-beats.onrender.com/"
+                            href="https://accord-ajr.onrender.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium"
                           >
-                            Visit HeartBeats
+                            Visit Accord
                           </a>
                           <a
-                            href="https://github.com/abramfelix1/HeartBeats"
+                            href="https://github.com/abramfelix1/Accord"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium"
