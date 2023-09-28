@@ -44,7 +44,7 @@ export default function ProjectsPage() {
     "/gifs/heartBeatsDemo1.gif",
     "/gifs/heartBeatsDemo2.gif",
   ];
-  const accordFiles = ["heartBeatsHome", "heartBeatsDemo1", "heartBeatsDemo2"];
+  const accordFiles = ["/pictures/accordHome.png", "/gifs/accordDemo.gif"];
 
   const menuExit = new Howl({
     src: ["./sounds/menuExit.mp3"],
@@ -155,7 +155,7 @@ export default function ProjectsPage() {
                           {heartBeatFiles.map((file, idx) => (
                             <SwiperSlide key={idx}>
                               <img
-                                src={activeSlide === idx ? `${file}` : `/gifs`}
+                                src={activeSlide === idx ? file : `/gifs`}
                                 data-src={file}
                                 alt={`HeartBeats ${file}`}
                               />
@@ -206,20 +206,12 @@ export default function ProjectsPage() {
                           modules={[Mousewheel, Navigation, Pagination]}
                           onSlideChange={handleSlideChange}
                         >
-                          {[
-                            "heartBeatsHome",
-                            "heartBeatsDemo1",
-                            "heartBeatsDemo2",
-                          ].map((gif, index) => (
-                            <SwiperSlide key={gif}>
+                          {accordFiles.map((file, idx) => (
+                            <SwiperSlide key={idx}>
                               <img
-                                src={
-                                  activeSlide === index
-                                    ? `/gifs/${gif}.gif`
-                                    : `/gifs`
-                                }
-                                data-src={`/gifs/${gif}.gif`}
-                                alt={`HeartBeats ${gif}`}
+                                src={activeSlide === idx ? file : `/gifs`}
+                                data-src={file}
+                                alt={`Accord ${file}`}
                               />
                             </SwiperSlide>
                           ))}
@@ -227,8 +219,8 @@ export default function ProjectsPage() {
                       </div>
                       <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
                         <p className="">
-                          Technologies: JavaScript, React, Redux, Express,
-                          PostgreSQL, TailwindCSS, Spotify API TailwindCSS
+                          Technologies: Python, JavaScript, React, Redux, Flask,
+                          PostgreSQL Flask-SocketIO, SocketIO, AWS
                         </p>
                         <p>
                           HeartBeats is a web application that allows users to
