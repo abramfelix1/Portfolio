@@ -39,11 +39,12 @@ export default function ProjectsPage() {
     "???",
   ];
 
-  const heartBeatGifs = [
-    "heartBeatsHome",
-    "heartBeatsDemo1",
-    "heartBeatsDemo2",
+  const heartBeatFiles = [
+    "/gifs/heartBeatsHome.gif",
+    "/gifs/heartBeatsDemo1.gif",
+    "/gifs/heartBeatsDemo2.gif",
   ];
+  const accordFiles = ["heartBeatsHome", "heartBeatsDemo1", "heartBeatsDemo2"];
 
   const menuExit = new Howl({
     src: ["./sounds/menuExit.mp3"],
@@ -151,20 +152,12 @@ export default function ProjectsPage() {
                           modules={[Mousewheel, Navigation, Pagination]}
                           onSlideChange={handleSlideChange}
                         >
-                          {[
-                            "heartBeatsHome",
-                            "heartBeatsDemo1",
-                            "heartBeatsDemo2",
-                          ].map((gif, index) => (
-                            <SwiperSlide key={gif}>
+                          {heartBeatFiles.map((file, idx) => (
+                            <SwiperSlide key={idx}>
                               <img
-                                src={
-                                  activeSlide === index
-                                    ? `/gifs/${gif}.gif`
-                                    : `/gifs`
-                                }
-                                data-src={`/gifs/${gif}.gif`}
-                                alt={`HeartBeats ${gif}`}
+                                src={activeSlide === idx ? `${file}` : `/gifs`}
+                                data-src={file}
+                                alt={`HeartBeats ${file}`}
                               />
                             </SwiperSlide>
                           ))}
