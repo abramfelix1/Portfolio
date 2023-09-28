@@ -12,6 +12,11 @@ export default function ProjectsPage() {
   const [hovered, setHovered] = useState("???");
   const { setShowProjects } = useContext(ViewContext);
   const [showPage, setShowPage] = useState(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const handleSlideChange = (swiper) => {
+    setActiveSlide(swiper.activeIndex);
+  };
 
   const projectNames = [
     "Seabnb",
@@ -32,6 +37,12 @@ export default function ProjectsPage() {
     "???",
     "???",
     "???",
+  ];
+
+  const heartBeatGifs = [
+    "heartBeatsHome",
+    "heartBeatsDemo1",
+    "heartBeatsDemo2",
   ];
 
   const menuExit = new Howl({
@@ -135,28 +146,28 @@ export default function ProjectsPage() {
                         <Swiper
                           slidesPerView={1}
                           mousewheel={true}
-                          pagination={true}
+                          pagination={{ clickable: true }}
                           // freeMode={true}
                           modules={[Mousewheel, Navigation, Pagination]}
+                          onSlideChange={handleSlideChange}
                         >
-                          <SwiperSlide>
-                            <img
-                              src={"/gifs/heartbeatsHome.gif"}
-                              alt="HeartBeats home"
-                            />
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <img
-                              src={"/gifs/heartBeatsDemo1.gif"}
-                              alt="HeartBeats demo1"
-                            />
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <img
-                              src={"/gifs/heartBeatsDemo2.gif"}
-                              alt="HeartBeats demo2"
-                            />
-                          </SwiperSlide>
+                          {[
+                            "heartBeatsHome",
+                            "heartBeatsDemo1",
+                            "heartBeatsDemo2",
+                          ].map((gif, index) => (
+                            <SwiperSlide key={gif}>
+                              <img
+                                src={
+                                  activeSlide === index
+                                    ? `/gifs/${gif}.gif`
+                                    : `/gifs`
+                                }
+                                data-src={`/gifs/${gif}.gif`}
+                                alt={`HeartBeats ${gif}`}
+                              />
+                            </SwiperSlide>
+                          ))}
                         </Swiper>
                       </div>
                       <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
