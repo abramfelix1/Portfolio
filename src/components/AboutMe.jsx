@@ -56,7 +56,7 @@ export default function AboutMe() {
           >
             <div className="flex items-center pt-20">
               <div className="w-32 h-[1px] bg-white"></div>
-              <i className="text-xl text-white font-normal whitespace-nowrap px-2">
+              <i className="text-xl text-white font-normal whitespace-nowrap px-2 select-none">
                 About Me
               </i>
               <div className="w-full h-[1px] bg-white"></div>

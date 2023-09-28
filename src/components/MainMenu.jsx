@@ -107,7 +107,7 @@ export default function MainMenu() {
               {hovered === "About" && "Learn about my origin story."}
               {hovered === "Contact" && "Find ways to contact me."}
             </p>
-            <p className="font-normal text-xl"> Click to Continue</p>
+            <p className="font-normal text-xl">Click to Continue</p>
           </div>
         )}
       </div>
