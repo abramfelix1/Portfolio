@@ -40,10 +40,36 @@ export default function ContactPage() {
             e.stopPropagation();
           }}
         >
-          <p>Resume</p>
-          <p>Github</p>
-          <p>Linkedin</p>
-          <p>abramfelix1@gmail.com</p>
+          <a
+            href="https://github.com/abramfelix1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
+          </a>
+          <a
+            href="https://www.linkedin.com/in/abram-felix-98937b162/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://wellfound.com/u/abram-felix"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="select-text"
+          >
+            Wellfound
+          </a>
+          <a
+            href="mailto:abramfelix1@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="select-text"
+          >
+            abramfelix1@gmail.com
+          </a>
         </div>
       </div>
     </div>

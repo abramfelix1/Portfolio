@@ -113,7 +113,7 @@ export default function ProjectsPage() {
                 <div className="w-full h-[1px] bg-white"></div>
               </div>
               <div className="flex w-full h-full justify-between border-y-[1px] pt-4 border-white bg-[rgb(0,0,0,0.25)] backdrop-filter backdrop-saturate-[.25]">
-                <div className="scroll text-white text-2xl leading-none w-96 select-none overflow-auto mb-4">
+                <div className="scroll text-white text-2xl leading-none w-96 select-none overflow-auto mb-4 ">
                   <div className="w-full h-[2px] mb-[1px] bg-gradient-to-r from-[rgb(0,0,0,0.50)] from-80% to-transparent"></div>
                   {projectNames.map((name, idx) => (
                     <div
@@ -137,7 +137,7 @@ export default function ProjectsPage() {
                         <img
                           src={"./pictures/pointer2.png"}
                           alt="pointer"
-                          className="absolute w-8 left-[72px] bottom-[-6px] z-50"
+                          className="absolute w-8 left-[100px] bottom-[-6px] z-50"
                         />
                       )}
                       <div className="w-full h-[2px] bg-gradient-to-r from-[rgb(255,255,255,0.25)] from-80% to-transparent"></div>

@@ -46,7 +46,7 @@ export default function Main() {
   });
 
   return (
-    <div className="flex relative w-screen h-screen">
+    <div className=" flex relative w-screen h-screen">
       {showWarning && (
         <AnimatePresence>
           <div

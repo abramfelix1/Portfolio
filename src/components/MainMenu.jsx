@@ -79,6 +79,32 @@ export default function MainMenu() {
         )}
         {!showAbout && (
           <div className="flex flex-col relative px-36">
+            <a
+              href="/assets/Abram_Felix_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                menuClick.play();
+                // setShowContact(true);
+                setHovered(null);
+              }}
+              onMouseEnter={(e) => {
+                e.stopPropagation();
+                setHovered("Resume");
+                menuNav.play();
+              }}
+              onMouseLeave={() => setHovered(null)}
+              className="w-fit cursor-default"
+            >
+              Resume
+            </a>
+            {hovered === "Resume" && (
+              <div className="w-[350px] h-[2px] bg-gradient-to-r from-white mb-2 absolute bottom-[-10px] pointer-events-none"></div>
+            )}
+          </div>
+        )}
+        {!showAbout && (
+          <div className="flex flex-col relative px-36">
             <p
               onClick={() => {
                 menuClick.play();
@@ -105,6 +131,7 @@ export default function MainMenu() {
             <p className="font-normal text-3xl">
               {hovered === "Projects" && "Browse my projects."}
               {hovered === "About" && "Learn about my origin story."}
+              {hovered === "Resume" && "View my resume."}
               {hovered === "Contact" && "Find ways to contact me."}
             </p>
             <p className="font-normal text-xl">Click to Continue</p>
