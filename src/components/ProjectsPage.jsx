@@ -131,7 +131,9 @@ export default function ProjectsPage() {
                       // }}
                     >
                       <div className="flex justify-start items-start w-[100px]">
-                        <p>{name}</p>
+                        <p className={`${name === "???" && "text-gray-400"}`}>
+                          {name}
+                        </p>
                       </div>
                       {name === hovered && hovered !== "???" && (
                         <img

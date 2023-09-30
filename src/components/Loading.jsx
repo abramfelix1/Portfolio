@@ -58,7 +58,7 @@ export default function Loading() {
           animate={{ scaleX: 1, transition: { duration: 8 } }}
           className="h-[2px] w-[60%] bg-gradient-to-r from-white mb-2"
         />
-        <p>Welcome to my portfolio! More Stuff Here...</p>
+        <p>Welcome to my portfolio! Sorry if its too loud.</p>
       </div>
     </div>
   );
