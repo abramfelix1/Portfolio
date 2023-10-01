@@ -52,6 +52,11 @@ export default function Landing({ onLoad, setOnLoad }) {
 
   const fontSize = 0.9;
 
+  const interactSound = new Howl({
+    src: ["./sounds/logoInteract.mp3"],
+    volume: 0.65,
+  });
+
   useEffect(() => {
     const ambienceSound = new Howl({
       src: ["./sounds/wind.wav"],
@@ -216,6 +221,7 @@ export default function Landing({ onLoad, setOnLoad }) {
       });
       textRef.current.position.set(0.85, -0.7, 1);
     }
+    interactSound.play();
   };
 
   const vClickHandler = () => {
@@ -223,6 +229,7 @@ export default function Landing({ onLoad, setOnLoad }) {
     setDuration(250);
     setIsRotated(!isRotated);
     setIsFlippedDown(!isRotated && !isFlippedDown);
+    interactSound.play();
   };
 
   return (
