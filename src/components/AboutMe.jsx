@@ -62,7 +62,7 @@ export default function AboutMe() {
               <div className="w-full h-[1px] bg-white"></div>
             </div>
             <div className="flex w-full h-full justify-between px-40 border-y-[1px] border-white bg-[rgb(0,0,0,0.25)] backdrop-saturate-[.25]">
-              <div className="text-white pt-4 pr-60">
+              <div className="scroll text-white pt-4 pr-60 overflow-auto">
                 <p className="pl-6">Hi! A little (or a lot) about me...</p>
                 <p className="pt-2">
                   <span className="pl-10">

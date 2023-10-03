@@ -113,7 +113,7 @@ export default function ProjectsPage() {
                 <div className="w-full h-[1px] bg-white"></div>
               </div>
               <div className="flex w-full h-full justify-between border-y-[1px] pt-4 border-white bg-[rgb(0,0,0,0.25)] backdrop-filter backdrop-saturate-[.25]">
-                <div className="scroll text-white text-2xl leading-none w-96 select-none overflow-auto mb-4 ">
+                <div className="scroll text-white text-2xl leading-none w-96 select-none overflow-auto mb-4">
                   <div className="w-full h-[2px] mb-[1px] bg-gradient-to-r from-[rgb(0,0,0,0.50)] from-80% to-transparent"></div>
                   {projectNames.map((name, idx) => (
                     <div
@@ -146,165 +146,167 @@ export default function ProjectsPage() {
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col w-[80%] h-full items-center justify-center">
-                  {hovered === "HeartBeats" && (
-                    <>
-                      <div className="w-[70%] pb-2 sm:w-[30%]  md:w-[50%] lg:w-[60%] xl:w-[70%] 2xl:w-[70%]">
-                        <Swiper
-                          slidesPerView={1}
-                          mousewheel={true}
-                          pagination={{ clickable: true }}
-                          // freeMode={true}
-                          modules={[Mousewheel, Navigation, Pagination]}
-                          onSlideChange={handleSlideChange}
-                        >
-                          {heartBeatFiles.map((file, idx) => (
-                            <SwiperSlide key={idx}>
-                              <img
-                                src={activeSlide === idx ? file : `/gifs`}
-                                data-src={file}
-                                alt={`HeartBeats ${file}`}
-                              />
-                            </SwiperSlide>
-                          ))}
-                        </Swiper>
-                      </div>
-                      <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
-                        <p className="">
-                          Technologies: JavaScript, React, Redux, Express,
-                          PostgreSQL, TailwindCSS, Spotify API TailwindCSS
-                        </p>
-                        <p>
-                          HeartBeats is a web application that allows users to
-                          journal their emotions and, in response, curates songs
-                          aligned with their moods, enabling them to craft
-                          personalized playlists.
-                        </p>
-                        <div className="flex gap-x-4">
-                          <a
-                            href="https://heart-beats.onrender.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium"
+                <div className="flex w-[70%] justify-center ">
+                  <div className="flex flex-col w-[80%] h-full items-center justify-center">
+                    {hovered === "HeartBeats" && (
+                      <>
+                        <div className="w-[70%] pb-2 sm:w-[30%]  md:w-[50%] lg:w-[60%] xl:w-[70%] 2xl:w-[70%]">
+                          <Swiper
+                            slidesPerView={1}
+                            mousewheel={true}
+                            pagination={{ clickable: true }}
+                            // freeMode={true}
+                            modules={[Mousewheel, Navigation, Pagination]}
+                            onSlideChange={handleSlideChange}
                           >
-                            Visit HeartBeats
-                          </a>
-                          <a
-                            href="https://github.com/abramfelix1/HeartBeats"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium"
-                          >
-                            Github
-                          </a>
+                            {heartBeatFiles.map((file, idx) => (
+                              <SwiperSlide key={idx}>
+                                <img
+                                  src={activeSlide === idx ? file : `/gifs`}
+                                  data-src={file}
+                                  alt={`HeartBeats ${file}`}
+                                />
+                              </SwiperSlide>
+                            ))}
+                          </Swiper>
                         </div>
-                      </div>
-                    </>
-                  )}
-                  {hovered === "Accord" && (
-                    <>
-                      <div className="w-[70%] pb-2 sm:w-[30%]  md:w-[50%] lg:w-[60%] xl:w-[70%] 2xl:w-[70%]">
-                        <Swiper
-                          slidesPerView={1}
-                          mousewheel={true}
-                          pagination={{ clickable: true }}
-                          // freeMode={true}
-                          modules={[Mousewheel, Navigation, Pagination]}
-                          onSlideChange={handleSlideChange}
-                        >
-                          {accordFiles.map((file, idx) => (
-                            <SwiperSlide key={idx}>
-                              <img
-                                src={activeSlide === idx ? file : `/gifs`}
-                                data-src={file}
-                                alt={`Accord ${file}`}
-                              />
-                            </SwiperSlide>
-                          ))}
-                        </Swiper>
-                      </div>
-                      <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
-                        <p className="">
-                          Technologies: Python, JavaScript, React, Redux, Flask,
-                          PostgreSQL Flask-SocketIO, SocketIO, AWS
-                        </p>
-                        <p>
-                          Accord, inspired by Discord, provides a platform for
-                          users to connect and engage within communities.
-                        </p>
-                        <div className="flex gap-x-4">
-                          <a
-                            href="https://accord-ajr.onrender.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium"
-                          >
-                            Visit Accord
-                          </a>
-                          <a
-                            href="https://github.com/abramfelix1/Accord"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium"
-                          >
-                            Github
-                          </a>
+                        <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
+                          <p className="">
+                            Technologies: JavaScript, React, Redux, Express,
+                            PostgreSQL, TailwindCSS, Spotify API TailwindCSS
+                          </p>
+                          <p>
+                            HeartBeats is a web application that allows users to
+                            journal their emotions and, in response, curates
+                            songs aligned with their moods, enabling them to
+                            craft personalized playlists.
+                          </p>
+                          <div className="flex gap-x-4">
+                            <a
+                              href="https://heart-beats.onrender.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium"
+                            >
+                              Visit HeartBeats
+                            </a>
+                            <a
+                              href="https://github.com/abramfelix1/HeartBeats"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium"
+                            >
+                              Github
+                            </a>
+                          </div>
                         </div>
-                      </div>
-                    </>
-                  )}
-                  {hovered === "Seabnb" && (
-                    <>
-                      <div className="w-[70%] pb-2 sm:w-[30%]  md:w-[50%] lg:w-[60%] xl:w-[70%] 2xl:w-[70%]">
-                        <Swiper
-                          slidesPerView={1}
-                          mousewheel={true}
-                          pagination={{ clickable: true }}
-                          // freeMode={true}
-                          modules={[Mousewheel, Navigation, Pagination]}
-                          onSlideChange={handleSlideChange}
-                        >
-                          {seabnbFiles.map((file, idx) => (
-                            <SwiperSlide key={idx}>
-                              <img
-                                src={activeSlide === idx ? file : `/gifs`}
-                                data-src={file}
-                                alt={`Accord ${file}`}
-                              />
-                            </SwiperSlide>
-                          ))}
-                        </Swiper>
-                      </div>
-                      <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
-                        <p className="">
-                          Technologies: JavaScript, React, Redux, Express,
-                          PostgreSQL
-                        </p>
-                        <p>
-                          Seabnb, inspired by Airbnb, my first full-stack
-                          project.
-                        </p>
-                        <div className="flex gap-x-4">
-                          <a
-                            href="https://airbnb-clone-2u2s.onrender.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium"
+                      </>
+                    )}
+                    {hovered === "Accord" && (
+                      <>
+                        <div className="w-[70%] pb-2 sm:w-[30%]  md:w-[50%] lg:w-[60%] xl:w-[70%] 2xl:w-[70%]">
+                          <Swiper
+                            slidesPerView={1}
+                            mousewheel={true}
+                            pagination={{ clickable: true }}
+                            // freeMode={true}
+                            modules={[Mousewheel, Navigation, Pagination]}
+                            onSlideChange={handleSlideChange}
                           >
-                            Visit Seabnb
-                          </a>
-                          <a
-                            href="https://github.com/abramfelix1/SeaBnB"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium"
-                          >
-                            Github
-                          </a>
+                            {accordFiles.map((file, idx) => (
+                              <SwiperSlide key={idx}>
+                                <img
+                                  src={activeSlide === idx ? file : `/gifs`}
+                                  data-src={file}
+                                  alt={`Accord ${file}`}
+                                />
+                              </SwiperSlide>
+                            ))}
+                          </Swiper>
                         </div>
-                      </div>
-                    </>
-                  )}
+                        <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
+                          <p className="">
+                            Technologies: Python, JavaScript, React, Redux,
+                            Flask, PostgreSQL Flask-SocketIO, SocketIO, AWS
+                          </p>
+                          <p>
+                            Accord, inspired by Discord, provides a platform for
+                            users to connect and engage within communities.
+                          </p>
+                          <div className="flex gap-x-4">
+                            <a
+                              href="https://accord-ajr.onrender.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium"
+                            >
+                              Visit Accord
+                            </a>
+                            <a
+                              href="https://github.com/abramfelix1/Accord"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium"
+                            >
+                              Github
+                            </a>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                    {hovered === "Seabnb" && (
+                      <>
+                        <div className="w-[70%] pb-2 sm:w-[30%]  md:w-[50%] lg:w-[60%] xl:w-[70%] 2xl:w-[70%]">
+                          <Swiper
+                            slidesPerView={1}
+                            mousewheel={true}
+                            pagination={{ clickable: true }}
+                            // freeMode={true}
+                            modules={[Mousewheel, Navigation, Pagination]}
+                            onSlideChange={handleSlideChange}
+                          >
+                            {seabnbFiles.map((file, idx) => (
+                              <SwiperSlide key={idx}>
+                                <img
+                                  src={activeSlide === idx ? file : `/gifs`}
+                                  data-src={file}
+                                  alt={`Accord ${file}`}
+                                />
+                              </SwiperSlide>
+                            ))}
+                          </Swiper>
+                        </div>
+                        <div className="scroll flex flex-col gap-y-2 justify-center items-center text-white overflow-auto">
+                          <p className="">
+                            Technologies: JavaScript, React, Redux, Express,
+                            PostgreSQL
+                          </p>
+                          <p>
+                            Seabnb, inspired by Airbnb, my first full-stack
+                            project.
+                          </p>
+                          <div className="flex gap-x-4">
+                            <a
+                              href="https://airbnb-clone-2u2s.onrender.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium"
+                            >
+                              Visit Seabnb
+                            </a>
+                            <a
+                              href="https://github.com/abramfelix1/SeaBnB"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium"
+                            >
+                              Github
+                            </a>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
               <div
