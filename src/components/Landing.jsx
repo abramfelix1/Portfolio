@@ -104,9 +104,11 @@ export default function Landing({ onLoad, setOnLoad }) {
 
   const minPeakX = -0.3;
   const maxPeakX = 0.3;
-
+  let previousTime = 0;
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
+    const deltaTime = time - previousTime;
+    previousTime = time;
     const newY =
       (Math.sin(time * 0.1) * (maxPeakY - minPeakY) + (maxPeakY + minPeakY)) /
       2;
@@ -116,20 +118,24 @@ export default function Landing({ onLoad, setOnLoad }) {
 
     depthMaterial.current.uMouse = [newX, newY];
 
+    const scaleChangeRate = 0.85;
+
     if (isStarted) {
       if (textRef.current.scale.x > 0.1 && rename === false) {
-        textRef.current.scale.x -= 0.05;
+        textRef.current.scale.x -= 0.095;
 
         if (textRef.current.scale.x < 0.1 && rename === false) {
           setRename(true);
+          previousTime = 0;
         }
       }
 
       if (textRef.current.scale.x < 1 && rename === true) {
-        textRef.current.scale.x += 0.05;
-        if (textRef.current.scale.x === 1 && rename === true) {
+        textRef.current.scale.x += 0.095;
+        if (textRef.current.scale.x >= 1 && rename === true) {
           setIsStarted(false);
           setRename(false);
+          previousTime = 0;
         }
       }
     }
