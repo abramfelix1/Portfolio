@@ -107,8 +107,9 @@ export default function Landing({ onLoad, setOnLoad }) {
   let previousTime = 0;
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
-    const deltaTime = time - previousTime;
-    previousTime = time;
+    const delta = clock.getDelta();
+    const normalizedDelta = Math.min(0.05, Math.max(0.041, delta));
+
     const newY =
       (Math.sin(time * 0.1) * (maxPeakY - minPeakY) + (maxPeakY + minPeakY)) /
       2;
@@ -122,7 +123,7 @@ export default function Landing({ onLoad, setOnLoad }) {
 
     if (isStarted) {
       if (textRef.current.scale.x > 0.1 && rename === false) {
-        textRef.current.scale.x -= 0.095;
+        textRef.current.scale.x -= normalizedDelta;
 
         if (textRef.current.scale.x < 0.1 && rename === false) {
           setRename(true);
@@ -131,7 +132,7 @@ export default function Landing({ onLoad, setOnLoad }) {
       }
 
       if (textRef.current.scale.x < 1 && rename === true) {
-        textRef.current.scale.x += 0.095;
+        textRef.current.scale.x += normalizedDelta;
         if (textRef.current.scale.x >= 1 && rename === true) {
           setIsStarted(false);
           setRename(false);
