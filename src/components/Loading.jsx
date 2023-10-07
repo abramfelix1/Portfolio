@@ -10,7 +10,7 @@ export default function Loading() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // setShowLoadingIcon(false);
+      setShowLoadingIcon(false);
     }, 4000);
     const timer2 = setTimeout(() => {
       setShowMainMenu(true);
@@ -34,7 +34,7 @@ export default function Loading() {
       onClick={handleContinue}
     >
       {showLoadingIcon ? (
-        <div className="w-full h-full absolute bottom-8 z-50">
+        <div className="w-full h-full absolute z-50">
           (
           <Canvas alpha={true}>
             <LoadingIcon />
