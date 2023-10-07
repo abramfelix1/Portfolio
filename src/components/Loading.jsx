@@ -10,7 +10,7 @@ export default function Loading() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowLoadingIcon(false);
+      // setShowLoadingIcon(false);
     }, 4000);
     const timer2 = setTimeout(() => {
       setShowMainMenu(true);
