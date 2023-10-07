@@ -192,8 +192,8 @@ export default function Landing({ onLoad, setOnLoad }) {
               height={0.02}
               curveSegments={2}
               bevelEnabled
-              bevelThickness={0.003}
-              bevelSize={0.01}
+              bevelThickness={0.00003}
+              bevelSize={0.0001}
               bevelOffset={0.0015}
               bevelSegments={25}
               letterSpacing={0.01}
@@ -214,8 +214,8 @@ export default function Landing({ onLoad, setOnLoad }) {
           height={0.02}
           curveSegments={2}
           bevelEnabled
-          bevelThickness={0.003}
-          bevelSize={0.001}
+          bevelThickness={0.0003}
+          bevelSize={0.0001}
           bevelOffset={0.0015}
           bevelSegments={25}
           letterSpacing={0.01}
