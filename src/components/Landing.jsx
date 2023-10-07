@@ -124,9 +124,9 @@ export default function Landing({ onLoad, setOnLoad }) {
 
     if (isStarted) {
       if (textRef.current.scale.x > 0.1 && rename === false) {
-        textRef.current.scale.x -= delta + 0.05;
+        textRef.current.scale.x -= delta;
 
-        console.log(delta + 0.05);
+        // console.log(delta + 0.05);
 
         if (textRef.current.scale.x < 0.1 && rename === false) {
           setRename(true);
@@ -134,8 +134,8 @@ export default function Landing({ onLoad, setOnLoad }) {
       }
 
       if (textRef.current.scale.x < 1 && rename === true) {
-        textRef.current.scale.x += delta + 0.05;
-        console.log(delta + 0.05);
+        textRef.current.scale.x += delta;
+        // console.log(delta + 0.05);
         if (textRef.current.scale.x === 1 && rename === true) {
           setIsStarted(false);
           setRename(false);
