@@ -53,18 +53,16 @@ export default function Landing({ onLoad, setOnLoad }) {
   const textRef = useRef();
   const firstLetterRef = useRef();
 
-  // Define position in normalized device coordinates
-  const ndcPosition = new Vector3(0.85, -0.8, 0.9); // Bottom-right of the screen
+  const ndcPosition = new Vector3(0.85, -0.8, 0.9);
 
-  // Convert NDC to world coordinates
   const worldPosition = ndcPosition.unproject(camera);
 
   // const referenceSize = { width: 1920, height: 1080 };
   // const xOffset = (6.5 / referenceSize.width) * size.width;
   // const yOffset = (3.5 / referenceSize.height) * size.height;
-  const xOffset = size.width * 0.9;
-  const yOffset = size.height * -0.9;
-  console.log(xOffset, yOffset);
+  // const xOffset = size.width * 0.9;
+  // const yOffset = size.height * -0.9;
+  // console.log(xOffset, yOffset);
 
   useEffect(() => {
     matcapTexture.needsUpdate = true;
