@@ -109,7 +109,6 @@ export default function Landing({ onLoad, setOnLoad }) {
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
     const delta = clock.getDelta();
-    const normalizedDelta = Math.min(0.05, Math.max(0.041, delta));
 
     const newY =
       (Math.sin(time * 0.1) * (maxPeakY - minPeakY) + (maxPeakY + minPeakY)) /
@@ -120,13 +119,9 @@ export default function Landing({ onLoad, setOnLoad }) {
 
     depthMaterial.current.uMouse = [newX, newY];
 
-    const scaleChangeRate = 0.85;
-
     if (isStarted) {
       if (textRef.current.scale.x > 0.1 && rename === false) {
-        textRef.current.scale.x -= delta;
-
-        // console.log(delta + 0.05);
+        textRef.current.scale.x -= 0.1;
 
         if (textRef.current.scale.x < 0.1 && rename === false) {
           setRename(true);
@@ -134,8 +129,7 @@ export default function Landing({ onLoad, setOnLoad }) {
       }
 
       if (textRef.current.scale.x < 1 && rename === true) {
-        textRef.current.scale.x += delta;
-        // console.log(delta + 0.05);
+        textRef.current.scale.x += 0.1;
         if (textRef.current.scale.x === 1 && rename === true) {
           setIsStarted(false);
           setRename(false);
